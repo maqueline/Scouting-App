@@ -6,12 +6,13 @@
         <meta name="msapplication-tap-highlight" content="no" />
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
 
+        <link rel="stylesheet" href="css/index.css" />
         <link rel="stylesheet" href="css/journalStyle.css" />
 
         <title>1540 Scouting</title>
     </head>
     <body>
-        <div class="app">
+        <div class="app container">
             <h1>Hello</h1>
             <h2>Welcome to my app</h2>
             <div>
@@ -21,6 +22,18 @@
                 <button type="button" class="btn btn-info">Info</button>
                 <button type="button" class="btn btn-warning">Warning</button>
                 <button type="button" class="btn btn-danger">Danger</button>
+
+                <div class="btn-group" data-toggle="buttons">
+                    <label class="btn btn-primary active">
+                        <input type="radio" name="options" id="option1" autocomplete="off" checked> Radio 1 (preselected)
+                    </label>
+                    <label class="btn btn-primary">
+                        <input type="radio" name="options" id="option2" autocomplete="off"> Radio 2
+                    </label>
+                    <label class="btn btn-primary">
+                        <input type="radio" name="options" id="option3" autocomplete="off"> Radio 3
+                    </label>
+                </div>
             </div>
         </div>
         <script src="cordova.js"></script>
