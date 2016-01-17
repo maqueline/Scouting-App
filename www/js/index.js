@@ -1,3 +1,15 @@
+function login(form) {
+    document.getElementById("formContainer").style.visibility = "hidden";
+    document.getElementById("formContainer").style.height = 0;
+
+    var ID = form.inputID.value;
+    var PIN = form.inputPIN.value;
+    // Verify that they're a legitimate user, and then do all this stuff below but better:
+    
+    document.getElementById("welcome").style.visibility = "visible";
+    document.getElementById("name").innerHTML = "Welcome, " + "Evë Maquelin";
+}
+
 var app = {
     initialize: function() {
         this.bindEvents();

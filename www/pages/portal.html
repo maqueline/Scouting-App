@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <link rel="stylesheet" href="../css/index.css" />
+        <link rel="stylesheet" href="../css/bootstrap.css" />
+
+        <title>Portal</title>
+    </head>
+    <body>
+        <div class="container">
+            <div id="formContainer">
+                <form id="loginForm">
+                    <h2>Stand Scouting Login</h2>
+                    <input type="text" name="inputID" class="form-control" placeholder="ID" required autofocus autocomplete="off">
+                    <input type="password" name="inputPIN" class="form-control" placeholder="PIN" required>
+                    <br>
+                    <button type="button" class="btn btn-lg btn-primary btn-block" onClick="login(this.form)">Login</button>
+                </form>
+            </div>
+            
+            <div id="welcome">
+                <div class="row">
+                    <div class="col-xs-10">
+                        <h1 id="name"></h1>
+                    </div>
+                    <div class="col-xs-2">
+                        <a class="btn btn-default btn-sm" href="portal.html">Log Out</a>
+                    </div>
+                </div>
+                <div class="row">
+                    <h1><small>"If all the cars in the United States were placed end to end, it would probably be Labor Day Weekend." - Doug Larson<small></h1>
+                    <br>
+                    <a class="btn btn-lg btn-primary btn-block pull-down" id="dropButton" href="gamble.html">Scout Next Match</a>
+
+                </div>
+            </div>
+        </div>
+        <script src="cordova.js"></script>
+        <script src="../js/jquery-1.12.0.min.js"></script>
+        <script src="../js/bootstrap.min.js"></script>
+        <script src="../js/index.js"></script>
+        <style type="text/css">
+            #welcome {
+                visibility: hidden;
+            }
+        </style>
+    </body>
+</html>

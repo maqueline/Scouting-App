@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <link rel="stylesheet" href="../css/index.css" />
+        <link rel="stylesheet" href="../css/bootstrap.css" />
+
+        <title>Gambling</title>
+    </head>
+    <body>
+        <div class="container text-center">
+            <h1>Who's gonna win???</h1>
+            <br>
+            <div class="btn-group" data-toggle="buttons">
+                <label class="btn btn-red btn-lg">
+                    <input type="radio" name="options" id="red" autocomplete="off"> Red
+                </label>
+                <label class="btn btn-plain btn-lg">
+                    <input type="radio" name="options" id="nobody" autocomplete="off"> Nobody
+                </label>
+                <label class="btn btn-blue btn-lg">
+                    <input type="radio" name="options" id="blue" autocomplete="off"> Blue
+                </label>
+            </div>
+            <h6><small>When you can't be bothered to make buttons look good :|</small></h6>
+            <br>
+            <a class="btn btn-primary btn-lg btn-block" id="dropButton" href="scouting.html">Start Scouting</a>
+        </div>
+        <script src="cordova.js"></script>
+        <script src="../js/jquery-1.12.0.min.js"></script>
+        <script src="../js/bootstrap.min.js"></script>
+        <script src="../js/index.js"></script>
+        <style type="text/css">
+            .btn-blue {
+                background-color: blue;
+                color: white;
+            }
+
+            .btn-blue.active {
+                background-color: #C8C8FF;
+            }
+
+            .btn-plain {
+                background-color: black;
+                color: white;
+            }
+
+            .btn-plain.active {
+                background-color: #C8C8C8;
+            }
+
+            .btn-red {
+                background-color: red; 
+                color: white;
+            }
+
+            .btn-red.active {
+                background-color: #FFC8C8;
+            }
+        </style>
+    </body>
+</html>
