@@ -17,7 +17,7 @@
                 <form id="loginForm">
                     <h2>Stand Scouting Login</h2>
                     <input type="text" name="inputID" class="form-control" placeholder="ID" required autofocus autocomplete="off">
-                    <input type="password" name="inputPIN" class="form-control" placeholder="PIN" required>
+                    <input type="number" name="inputPIN" class="form-control" placeholder="PIN" required>
                     <br>
                     <button type="button" class="btn btn-lg btn-primary btn-block" onClick="login(this.form)">Login</button>
                 </form>
@@ -47,6 +47,10 @@
         <style type="text/css">
             #welcome {
                 visibility: hidden;
+            }
+
+            input[type=number] {
+                -webkit-text-security: disc;
             }
         </style>
     </body>
