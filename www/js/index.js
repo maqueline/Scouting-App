@@ -1,9 +1,9 @@
 var persist = {
-    users: "hi",
+    people: {},
     user: {
         name: "",
-        id: "27",
-        lastbet: "RED"
+        id: "",
+        lastbet: ""
     },
     match: {
         robot: "1540",
@@ -78,10 +78,36 @@ var persist = {
 };
 
 function login(form) {
-    var ID = "i" + String(form.inputID.value);
+    // loadJSON(function(response) {
+    //     persist.users = JSON.parse(response);
+    // });
+    // console.log(persist.users);
+    var json = `{
+    "i1": "Ross Geller",
+    "i2": "Monica Geller-Bing",
+    "i3": "Chandler Bing",
+    "i11": "Jake Springer",
+    "i13": "Evë Maquelin",
+    "i17": "Adolfo Apolloni",
+    "i18": "Ryan Selden",
+    "i21": "Tyler Nguyen",
+    "i22": "Robin Attey",
+    "i33": "Alexander Mackworth",
+    "i37": "Kobi Saha",
+    "i42": "Colby Skeggs",
+    "i96": "Liam Bendicksen",
+    "i98": "Iman Wahle",
+    "i99": "Aidan Smith"
+}`;
 
-    if (persist.users.ID) {
-        persist.user.name = persist.users.ID; // logindata.get(ID); or something
+    persist.people = JSON.parse(json);
+
+    var ID = "i" + String(form.inputID.value);
+    console.log(ID);
+
+    if (typeof persist.people[ID] == "string") {
+        persist.user.name = persist.people[ID]; // logindata.get(ID); or something
+        persist.user.id = String(form.inputID.value);
 
         window.name = JSON.stringify(persist);
         window.location.href = "portal.html";
@@ -112,10 +138,6 @@ function sendOff(spec) {
 
 var app = {
     initialize: function() {
-        loadJSON(function(response) {
-            persist.users = JSON.parse(response);
-        });
-        console.log(persist.users);
         this.bindEvents();
     },
 
