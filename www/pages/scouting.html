@@ -114,9 +114,67 @@
                     </div>
                 </div>
                 <br>
+                <div class="text-center container row">
+                    <div class="col-xs-3">
+                        <div class="row">
+                            <div class="col-xs-2">
+                                <h1>A</h1>
+                            </div>
+                            <div class="col-xs-8">
+                                <div class="btn-group btn-group-vertical" data-toggle="buttons" id="aD">
+                                    <label class="btn btn-success"><input type="radio" class="toggle" value="portcullis">Portcullis</label>
+                                    <label class="btn btn-success"><input type="radio" class="toggle" value="cheval de frise">Cheval de Frise</label>
+                                </div>
+                            </div>
+                            <div class="col-xs-2">
+                                <span></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-3">
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <h1>B</h1>
+                            </div>
+                            <div class="col-xs-9">
+                                <div class="btn-group btn-group-vertical" data-toggle="buttons" id="bD">
+                                    <label class="btn btn-success"><input type="radio" class="toggle" value="low">Moat</label>
+                                    <label class="btn btn-success"><input type="radio" class="toggle" value="high">Ramparts</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-3">
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <h1>C</h1>
+                            </div>
+                            <div class="col-xs-9">
+                                <div class="btn-group btn-group-vertical" data-toggle="buttons" id="cD">
+                                    <label class="btn btn-success"><input type="radio" class="toggle" value="low">Drawbridge</label>
+                                    <label class="btn btn-success"><input type="radio" class="toggle" value="high">Sally Port</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-3">
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <h1>D</h1>
+                            </div>
+                            <div class="col-xs-9">
+                                <div class="btn-group btn-group-vertical" data-toggle="buttons" id="dD">
+                                    <label class="btn btn-success"><input type="radio" class="toggle" value="low">Rock Wall</label>
+                                    <label class="btn btn-success"><input type="radio" class="toggle" value="high">Rough Terrain</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
                 <button type="button" class="btn btn-primary btn-block btn-lg" onclick="startMatch()">Start Match</button>
             </div>
-            <div id="auto">
+            <div id="autoBox">
                 <h1>Autonomous</h1>
                 <div class="row">
                     <div class="col-xs-6">
@@ -125,13 +183,8 @@
                     <div class="col-xs-6">
                         <div class="dropdown">
                             <button class="btn btn-default dropdown-toggle" type="button" id="rstart" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Choose starting location... <span class="caret"></span></button>
-                            <ul class="dropdown-menu" aria-labelledby="rstart">
+                            <ul id="autoStartDDL" class="dropdown-menu" aria-labelledby="rstart">
                                 <li><a href="#" onclick="document.getElementById('rstart').innerHTML = this.innerHTML">in the spybox.<a></li>
-                                <li><a href="#" onclick="document.getElementById('rstart').innerHTML = this.innerHTML">2</a></li>
-                                <li><a href="#" onclick="document.getElementById('rstart').innerHTML = this.innerHTML">3</a></li>
-                                <li><a href="#" onclick="document.getElementById('rstart').innerHTML = this.innerHTML">4</a></li>
-                                <li><a href="#" onclick="document.getElementById('rstart').innerHTML = this.innerHTML">5</a></li>
-                                <li><a href="#" onclick="document.getElementById('rstart').innerHTML = this.innerHTML">6</a></li>
                             </ul>
                         </div>
                     </div>
@@ -188,6 +241,8 @@
                         <h4>goal.</h4>
                     </div>
                 </div>
+                <br>
+                <button type="button" class="btn btn-primary btn-block btn-lg" onclick="startTele()">Start Teleop</button>
             </div>
         </div>
         <script src="cordova.js"></script>
@@ -197,16 +252,41 @@
         <script type="text/javascript">
             persist = JSON.parse(window.name);
 
-            function startMatch(){
+            function startMatch() {
                 document.getElementById("rdbtn").style.visibility = "visible";
-                document.getElementById("auto").style.visibility = "visible";
+                document.getElementById("autoBox").style.visibility = "visible";
                 document.getElementById("orient").style.visibility = "hidden";
-                document.getElementById("orient").style.height = "0px";
+
+                aD = $('#ad label.active input').innerHTML;
+                bD = $('#bd label.active input').val();
+                cD = $('#cd label.active input').val();
+                dD = $('#dd label.active input').val();
+
+                console.log(aD);
+
+                ul = document.getElementById("autoStartDDL");
+                ul.appendChild(makeDDLI(aD, "rstart"));
+            }
+
+            function makeDDLI(text, overID) {
+                a = document.createElement("a");
+                a.setAttribute("href", "#");
+                a.setAttribute("onclick", "document.getElementById('" + overID + "').innerHTML = this.innerHTML");
+                a.innerHTML = text;
+
+                li = document.createElement("li");
+                li.appendChild(a);
+
+                return li;
+            }
+
+            function startTele() {
+
             }
 
             function populate() {
                 document.getElementById("rdbtn").style.visibility = "hidden";
-                document.getElementById("auto").style.visibility = "hidden";
+                document.getElementById("autoBox").style.visibility = "hidden";
 
                 document.getElementById("youare").innerHTML = "You are: " + persist.user.name + " <small><a href='#' onclick='matchMinus()'>Not You?</a></small>";
                 document.getElementById("scouting").innerHTML = "You are scouting team: " + persist.match.robot;
@@ -247,7 +327,7 @@
                 window.location.href = "login.html";
             }
         </script>
-        <style type="text/css">
+        <style type="text/css"> 
             body { padding-top: 70px; }
         </style>
     </body>
