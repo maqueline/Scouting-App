@@ -38,15 +38,6 @@ body {
     margin-top: 60vh;
 }
 
-.photos {
-    margin-left: 10px;
-    margin-top: 50px;
-}
-
-.photo {
-    padding: 5px;
-}
-
 .event {
     border-radius: 4px;
     -webkit-border-radius: 4px;
