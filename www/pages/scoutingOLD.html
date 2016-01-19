@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <link rel="stylesheet" href="../css/index.css">
+        <link rel="stylesheet" href="../css/bootstrap.css">
+
+        <title>Scout Page</title>
+    </head>
+    <body onload="populate()">
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <p class="navbar-text" id="navscouting">Scouting:</p>
+                <div class="navbar-right">
+                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#disabledRobot" style="margin-top: 6px;" id="rdbtn">Robot Disabled</button>
+                    <div id="disabledRobot" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">How did the robot get disabled?</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="radio">
+                                        <label><input type="radio" name="missingRobot" class="toggle" value="tipped">It tipped, and now it's just laying there watching other able-bodied robots fly by.</label>
+                                    </div>
+                                    <div class="radio">
+                                        <label><input type="radio" name="missingRobot" class="toggle" value="broken">It broke somehow.</label>
+                                    </div>
+                                    <div class="radio">
+                                        <label><input type="radio" name="missingRobot" class="toggle" value="noshow">It never actually showed up but I hit "Start Match" too early.</label>
+                                    </div>
+                                    <div class="radio">
+                                        <label><input type="radio" name="missingRobot" class="toggle" value="noshow">It's a mystery! One second it was going and the next it wasn't going anymore...</label>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                    <button type="button" class="btn btn-default" data-dismiss="modal" onclick="disabledRobot()">OK</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <div class="container">
+            <div id="orient">
+                <h1>Quick Orientation:</h1>
+                <div class="row">
+                    <div class="col-xs-9">
+                        <h4 id="youare">You are:</h4>
+                        <h4 id="scouting">You are scouting team:</h4>
+                        <h4 id="bet">You bet on:</h4>
+                    </div>
+                    <div class="col-xs-3">
+                        <button type="button" class="btn btn-warning btn-lg" data-toggle="modal" data-target="#missingRobot">Missing Robot!</button>
+                        <div id="missingRobot" class="modal fade" role="dialog">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">My robot is missing because...</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="radio">
+                                            <label><input type="radio" name="missingRobot" class="toggle" value="wrongmatch">it's not even supposed to be in this match...</label>
+                                        </div>
+                                        <div class="radio">
+                                            <label><input type="radio" name="missingRobot" class="toggle" value="broken">it's broken.</label>
+                                        </div>
+                                        <div class="radio">
+                                            <label><input type="radio" name="missingRobot" class="toggle" value="noshow">it never even showed up!</label>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                        <button type="button" class="btn btn-default" data-dismiss="modal" onclick="missingRobot()">OK</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="setMatchNumber" class="modal fade" role="dialog">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">Manual Match Choice</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="dropdown">
+                                            <button class="btn btn-default dropdown-toggle" type="button" id="dLabel" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Choose match number...<span class="caret"></span></button>
+                                            <ul class="dropdown-menu" aria-labelledby="dLabel">
+                                                <li><a href="#" onclick="document.getElementById('dLabel').innerHTML = this.innerHTML">1</a></li>
+                                                <li><a href="#" onclick="document.getElementById('dLabel').innerHTML = this.innerHTML">2</a></li>
+                                                <li><a href="#" onclick="document.getElementById('dLabel').innerHTML = this.innerHTML">3</a></li>
+                                                <li><a href="#" onclick="document.getElementById('dLabel').innerHTML = this.innerHTML">4</a></li>
+                                                <li><a href="#" onclick="document.getElementById('dLabel').innerHTML = this.innerHTML">5</a></li>
+                                                <li><a href="#" onclick="document.getElementById('dLabel').innerHTML = this.innerHTML">6</a></li>
+                                                <li><a href="#" onclick="document.getElementById('dLabel').innerHTML = this.innerHTML">7</a></li>
+                                                <li><a href="#" onclick="document.getElementById('dLabel').innerHTML = this.innerHTML">8</a></li>
+                                                <li><a href="#" onclick="document.getElementById('dLabel').innerHTML = this.innerHTML">9</a></li>
+                                                <li><a href="#" onclick="document.getElementById('dLabel').innerHTML = this.innerHTML">10</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal" onclick="resetMatchNumber()">OK</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="text-center container row">
+                    <div class="col-xs-3">
+                        <div class="row">
+                            <div class="col-xs-2">
+                                <h1>A</h1>
+                            </div>
+                            <div class="col-xs-8">
+                                <div class="btn-group btn-group-vertical" data-toggle="buttons" id="aD">
+                                    <label class="btn btn-success"><input type="radio" class="toggle" value="portcullis">Portcullis</label>
+                                    <label class="btn btn-success"><input type="radio" class="toggle" value="cheval de frise">Cheval de Frise</label>
+                                </div>
+                            </div>
+                            <div class="col-xs-2">
+                                <span></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-3">
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <h2>B</h1>
+                            </div>
+                            <div class="col-xs-9">
+                                <div class="btn-group btn-group-vertical" data-toggle="buttons" id="bD">
+                                    <label class="btn btn-success"><input type="radio" class="toggle" value="low">Moat</label>
+                                    <label class="btn btn-success"><input type="radio" class="toggle" value="high">Ramparts</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-3">
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <h3>C</h1>
+                            </div>
+                            <div class="col-xs-9">
+                                <div class="btn-group btn-group-vertical" data-toggle="buttons" id="cD">
+                                    <label class="btn btn-success"><input type="radio" class="toggle" value="low">Drawbridge</label>
+                                    <label class="btn btn-success"><input type="radio" class="toggle" value="high">Sally Port</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-3">
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <h4>D</h1>
+                            </div>
+                            <div class="col-xs-9">
+                                <div class="btn-group btn-group-vertical" data-toggle="buttons" id="dD">
+                                    <label class="btn btn-success"><input type="radio" class="toggle" value="low">Rock Wall</label>
+                                    <label class="btn btn-success"><input type="radio" class="toggle" value="high">Rough Terrain</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <button type="button" class="btn btn-primary btn-block btn-lg" onclick="startMatch()">Start Match</button>
+            </div>
+            <div id="autoBox">
+                <h1>Autonomous</h1>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <h4>Robot is starting...</h4>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="rstart" data-toggle="dropdown">in neutral zone.</button>
+                            <ul id="autoStartDDL" class="dropdown-menu"></ul>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-xs-4">
+                        <h4>Interacted with... </h4>
+                    </div>
+                    <div class="col-xs-4">
+                        <div class="row">
+                            <div class="col-xs-8">
+                                <div class="dropdown">
+                                    <button class="btn btn-default dropdown-toggle" type="button" id="rinter" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">no defenses <span class="caret"></span></button>
+                                    <ul class="dropdown-menu" aria-labelledby="rinter">
+                                        <li><a href="#" onclick="document.getElementById('rinter').innerHTML = this.innerHTML">no defenses<a></li>
+                                        <li><a href="#" onclick="document.getElementById('rinter').innerHTML = this.innerHTML">2</a></li>
+                                        <li><a href="#" onclick="document.getElementById('rinter').innerHTML = this.innerHTML">3</a></li>
+                                        <li><a href="#" onclick="document.getElementById('rinter').innerHTML = this.innerHTML">4</a></li>
+                                        <li><a href="#" onclick="document.getElementById('rinter').innerHTML = this.innerHTML">5</a></li>
+                                        <li><a href="#" onclick="document.getElementById('rinter').innerHTML = this.innerHTML">6</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-xs-4">
+                                <h4>by...</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-4">
+                        <div class="dropdown">
+                            <button class="btn btn-default dropdown-toggle" type="button" id="rby" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">doing nothing. <span class="caret"></span></button>
+                            <ul class="dropdown-menu" aria-labelledby="rby">
+                                <li><a href="#" onclick="document.getElementById('rby').innerHTML = this.innerHTML">doing nothing.<a></li>
+                                <li><a href="#" onclick="document.getElementById('rby').innerHTML = this.innerHTML">crossing it.</a></li>
+                                <li><a href="#" onclick="document.getElementById('rby').innerHTML = this.innerHTML">getting to it.</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-xs-4">
+                        <h4>Scored in... </h4>
+                    </div>
+                    <div class="col-xs-4">
+                        <div class="btn-group btn-group-justified" data-toggle="buttons" id="autoscore">
+                            <label class="btn btn-success"><input type="radio" class="toggle" value="low">low</label>
+                            <label class="btn btn-success"><input type="radio" class="toggle" value="high">high</label>
+                            <label class="btn btn-success"><input type="radio" class="toggle" value="no">no</label>
+                        </div>
+                    </div>
+                    <div class="col-xs-4">
+                        <h4>goal.</h4>
+                    </div>
+                </div>
+                <br>
+                <button type="button" class="btn btn-primary btn-block btn-lg" onclick="startTele()">Start Teleop</button>
+            </div>
+        </div>
+        <script src="cordova.js"></script>
+        <script src="../js/jquery-2.2.0.min.js"></script>
+        <script src="../js/bootstrap.min.js"></script>
+        <script src="../js/index.js"></script>
+        <script type="text/javascript">
+            persist = JSON.parse(window.name);
+
+            function startMatch() {
+                document.getElementById("rdbtn").style.visibility = "visible";
+                document.getElementById("autoBox").style.visibility = "visible";
+                document.getElementById("orient").style.visibility = "hidden";
+
+                aD = $('#ad label.active input').innerHTML;
+                bD = $('#bd label.active input').val();
+                cD = $('#cd label.active input').val();
+                dD = $('#dd label.active input').val();
+
+                console.log(aD);
+
+                ul = document.getElementById("autoStartDDL");
+                ul.appendChild(makeDDLI(aD, "rstart"));
+                ul.appendChild(makeDDLI(bD, "rstart"));
+                ul.appendChild(makeDDLI(cD, "rstart"));
+                ul.appendChild(makeDDLI(dD, "rstart"));
+            }
+
+            function makeDDLI(text, overID) {
+                // a = document.createElement("a");
+                // a.setAttribute("href", "#");
+                // a.setAttribute("onclick", "document.getElementById('" + overID + "').innerHTML = this.innerHTML");
+                // a.innerHTML = text;
+
+                // li = document.createElement("li");
+                // li.appendChild(a);
+
+                li = document.createElement("button");
+                li.setAttribute("class", "dropdown-item");
+                li.setAttribute("type", "button");
+                li.innerHTML = "in front of the " + text;
+
+                return li;
+            }
+
+            function startTele() {
+
+            }
+
+            function populate() {
+                document.getElementById("rdbtn").style.visibility = "hidden";
+                document.getElementById("autoBox").style.visibility = "hidden";
+
+                document.getElementById("youare").innerHTML = "You are: " + persist.user.name + " <small><a href='#' onclick='matchMinus()'>Not You?</a></small>";
+                document.getElementById("scouting").innerHTML = "You are scouting team: " + persist.match.robot;
+                document.getElementById("navscouting").innerHTML = "Scouting: " + persist.match.robot + " in match " + persist.match.number;
+                document.getElementById("bet").innerHTML = "You bet on: " + persist.user.lastbet;
+            }
+
+            function missingRobot() {
+                var reason = $('input[name="missingRobot"]:checked').val();
+                
+                if (reason === "wrongmatch") {
+                    $('#setMatchNumber').modal('toggle')
+                } else if (reason === "broken" || reason === "noshow") {
+                    persist.spec.matches[persist.spec.matches.length - 1].misc.brokenDown = true;
+                    sendOff(persist.spec);
+                    window.location.href = "thanks.html";
+                }
+            }
+
+            function disabledRobot() {
+                persist.spec.matches[persist.spec.matches.length - 1].misc.brokenDown = true;
+                sendOff(persist.spec);
+                window.location.href = "thanks.html";
+            }
+
+            function resetMatchNumber() {
+                n = document.getElementById('dLabel').innerHTML;
+                persist.match.number = n;
+                window.name = JSON.stringify(persist);
+                window.location.href = "scouting.html";
+            }
+
+            function matchMinus() {
+                n = parseInt(persist.match.number);
+                persist.match.number = String(n - 1);
+                console.log(persist.match);
+                window.name = JSON.stringify(persist);
+                window.location.href = "login.html";
+            }
+        </script>
+        <style type="text/css"> 
+            body { padding-top: 70px; }
+        </style>
+    </body>
+</html>
