@@ -18,7 +18,7 @@
             document.getElementById("gameInfo").innerHTML = "Scouting robot " + persist.match.robot + " in match " + persist.match.number;
             document.getElementById("youare").innerHTML = "You are: " + persist.user.name;
             document.getElementById("scouting").innerHTML = "You are scouting team: " + persist.match.robot;
-            document.getElementById("betting").innerHTML = "You bet on: " persist.user.lastbet;
+            document.getElementById("betting").innerHTML = "You bet on: " + persist.user.lastbet;
         }
         window.onload = populate;
         </script>
@@ -26,9 +26,9 @@
         <title>Scouting</title>
     </head>
     <body>
-        <nav class="navbar navbar-dark bg-primary navbar-fixed-top">
-            <p class="navbar-brand" id="gameInfo"></p>
-            <button type="button" class="btn pull-xs-right">Robot Disabled</button>
+        <nav class="navbar navbar-dark bg-primary">
+            <p class="navbar-brand" id="gameInfo">Scouting...</p>
+            <button type="button" class="btn">Robot Disabled</button>
         </nav>
         <div class="container">
             <div class="row" id="orient">
@@ -47,6 +47,7 @@
         </div>
         <script src="cordova.js"></script>
         <script src="../js/jquery-2.2.0.min.js"></script>
+        <script src="../js/tether.min.js"></script>
         <script src="../js/bootstrap.min.js"></script>
         <script src="../js/index.js"></script>
     </body>
