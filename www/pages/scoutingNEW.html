@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <link rel="stylesheet" href="../css/index.css" />
+        <link rel="stylesheet" href="../css/bootstrap.css" />
+
+        <script type="text/javascript">
+        var persist = {};
+
+        function populate() {
+            persist = JSON.parse(window.name);
+
+            document.getElementById("gameInfo").innerHTML = "Scouting robot " + persist.match.robot + " in match " + persist.match.number;
+            document.getElementById("youare").innerHTML = "You are: " + persist.user.name;
+            document.getElementById("scouting").innerHTML = "You are scouting team: " + persist.match.robot;
+            document.getElementById("betting").innerHTML = "You bet on: " + persist.user.lastbet;
+        }
+        window.onload = populate;
+        </script>
+
+        <title>Scouting</title>
+    </head>
+    <body>
+        <nav class="navbar navbar-dark bg-primary">
+            <p class="navbar-brand" id="gameInfo">Scouting...</p>
+            <button type="button" class="btn">Robot Disabled</button>
+        </nav>
+        <div class="container">
+            <div class="row" id="orient">
+                <div class="row" id="checkMatch">
+                    <h1>Quick Orientation</h1>
+                    <div class="col-xs-8">
+                        <h4 id="youare"></h4>
+                        <h4 id="scouting"></h4>
+                        <h4 id="betting"></h4>
+                    </div>
+                    <div class="col-xs-4">
+                        <button type="button" class="btn btn-lg">Missing Robot!</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="cordova.js"></script>
+        <script src="../js/jquery-2.2.0.min.js"></script>
+        <script src="../js/tether.min.js"></script>
+        <script src="../js/bootstrap.min.js"></script>
+        <script src="../js/index.js"></script>
+    </body>
+</html>
