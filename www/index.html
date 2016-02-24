@@ -4,7 +4,7 @@
         <meta name="viewport" content="width=320; user-scalable=no" />
         <meta http-equiv="Content-type" content="text/html; charset=utf-8">
         <title>Minimal AppLaud App</title>
-        <script type="text/javascript" charset="utf-8" src="phonegap-1.4.1.js"></script> 
+        <script src="phonegap.js"></script>  
         <script type="text/javascript" charset="utf-8"> 
         var fileSystem; 
 
@@ -85,7 +85,8 @@
             dirReader.readEntries(gotFiles,onError);
         }
 
-        function onFSSuccess(fs) { 
+        function onFSSuccess(fs) {
+            logit("yo")
             fileSystem = fs;
             getById("#dirListingButton").addEventListener("touchstart", doDirectoryListing);
             getById("#addFileButton").addEventListener("touchstart", doAppendFile);
