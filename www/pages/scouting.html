@@ -172,15 +172,6 @@
                             </div>
                         </div>
                         <br>
-                        <div class="row">
-                            <div class="col-xs-10">
-                                <h3></h3>
-                            </div>
-                            <div class="col-xs-2">
-                                <a class="btn btn-default btn-sm" href="#teleBox" id="shotEdit" onclick="startShotEditMode()">Edit  <span class='glyphicon glyphicon-pencil'></span></a>
-                            </div>
-                        </div>
-                        <br>
                         <div class="row" id="shotView">
                             <ul id="shotList"></ul>
                         </div>
@@ -190,7 +181,12 @@
                         <h3>Defense Crossings</h3>
                         <div class="row">
                             <div class="container text-center">
-                                <div class="btn-group btn-group-justified" data-toggle="buttons" id="dCrossed"></div>
+                                <div class="btn-group btn-group-justified" data-toggle="buttons" id="dCrossed">
+                                    <label id="dcA" class="btn btn-lg btn-success"><input type="radio" class="toggle" value="defense A">A</label>
+                                    <label id="dcB" class="btn btn-lg btn-success"><input type="radio" class="toggle" value="defense B">B</label>
+                                    <label id="dcC" class="btn btn-lg btn-success"><input type="radio" class="toggle" value="defense C">C</label>
+                                    <label id="dcD" class="btn btn-lg btn-success"><input type="radio" class="toggle" value="defense D">D</label>
+                                </div>
                                 <br>
                                 <div class="row">
                                     <div class="btn-group" data-toggle="buttons" id="dSuccess">
@@ -202,16 +198,7 @@
                             </div>
                             <br>
                             <div class="text-center">
-                                <button type="button" class="btn btn-primary btn-lg" onclick="addDC()"><span class="glyphicon glyphicon-plus"></span> DEFENSE CROSSING<button>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div class="col-xs-10">
-                                <h3></h3>
-                            </div>
-                            <div class="col-xs-2">
-                                <a class="btn btn-default btn-sm" href="#teleBox" id="DCEdit" onclick="startDCEditMode()">Edit  <span class='glyphicon glyphicon-pencil'></span></a>
+                                <button type="button" class="btn btn-primary btn-lg" onclick="addDC()"><span class="glyphicon glyphicon-plus"></span> DEFENSE CROSSING</button>
                             </div>
                         </div>
                         <br>
@@ -333,69 +320,6 @@
                     </div>
                 </div>
             </div>
-            <div id="addShot" class="modal fade" role="dialog">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4 class="modal-title">Add a shot</h4>
-                        </div>
-                        <div class="modal-body">
-                            <div class="container text-center">
-                                <div class="row">
-                                    <p>Future courtyard map!</p>
-                                </div>
-                                <div class="row">
-                                    <div class="col-xs-6">
-                                        <div class="btn-group" data-toggle="buttons" id="teleGoalType">
-                                            <label class="btn btn-lg btn-success"><input type="radio" class="toggle" value="low">low</label>
-                                            <label class="btn btn-lg btn-success"><input type="radio" class="toggle" value="high">high</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-6">
-                                        <div class="btn-group" data-toggle="buttons" id="teleGoalSuccess">
-                                            <label class="btn btn-lg btn-success"><input type="radio" class="toggle" value="successfully">success</label>
-                                            <label class="btn btn-lg btn-success"><input type="radio" class="toggle" value="unsuccessfully">failure</label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                            <button type="button" class="btn btn-default" data-dismiss="modal" onclick="addShot()">OK</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div id="addDC" class="modal fade" role="dialog">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4 class="modal-title">Add defense crossing</h4>
-                        </div>
-                        <div class="modal-body">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-xs-8">
-                                        <div class="btn-group btn-group-vertical" data-toggle="buttons" id="defenseCrossed"></div>
-                                    </div>
-                                    <div class="col-xs-4">
-                                        <div class="btn-group btn-group-vertical" data-toggle="buttons" id="teleGoalSuccess">
-                                            <label class="btn btn-lg btn-success"><input type="radio" class="toggle" value="slowly.">slow</label>
-                                            <label class="btn btn-lg btn-success"><input type="radio" class="toggle" value="with average speed.">average</label>
-                                            <label class="btn btn-lg btn-success"><input type="radio" class="toggle" value="quickly.">fast</label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                            <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <div id="modalmodal" class="modal fade" role="dialog">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -452,11 +376,10 @@
                 ul.appendChild(makeDDLI("crossing.", "rby"));
                 ul.appendChild(makeDDLI("getting there.", "rby"));
 
-                ol = document.getElementById("dCrossed");
-                ol.appendChild(makeDCButton(aD));
-                ol.appendChild(makeDCButton(bD));
-                ol.appendChild(makeDCButton(cD));
-                ol.appendChild(makeDCButton(dD));
+                document.getElementById("dcA").innerHTML = '<input type="radio" class="toggle" value="' + aD + '">' + aD;
+                document.getElementById("dcB").innerHTML = '<input type="radio" class="toggle" value="' + bD + '">' + bD;
+                document.getElementById("dcC").innerHTML = '<input type="radio" class="toggle" value="' + cD + '">' + cD;
+                document.getElementById("dcD").innerHTML = '<input type="radio" class="toggle" value="' + dD + '">' + dD;
             }
 
             function makeDDLI(text, overID) {
@@ -488,20 +411,6 @@
                 return label;
             }
 
-            function makeDCButton(text) {
-                inn = document.createElement("input");
-                inn.setAttribute("type", "radio");
-                inn.setAttribute("class", "toggle");
-                inn.setAttribute("value", text);
-
-                label = document.createElement("label");
-                label.setAttribute("class", "btn btn-lg btn-success");
-                label.appendChild(inn);
-                label.innerHTML = text;
-
-                return label;
-            }
-
             function startTele() {
                 document.getElementById("teleBox").style.visibility = "visible";
                 document.getElementById("autoBox").style.display = "none";
@@ -509,8 +418,6 @@
             }
 
             function addShot() {
-                document.getElementById("shotEdit").style.visibility = "visible";
-
                 goalType = $('#teleGoalType label.active input').val();
                 success = $('#teleGoalSuccess label.active input').val();
 
@@ -524,123 +431,55 @@
                 button.setAttribute("type", "button");
                 button.innerHTML = "Shot in the " + goalType + " goal " + success;
 
-                move = document.createElement("button");
-                move.setAttribute("class", "btn btn-default btn-lg move");
-                move.setAttribute("type", "button");
-                move.setAttribute("style", "margin-right:-50px; visibility:hidden;")
-                move.innerHTML = "<span class='glyphicon glyphicon-menu-hamburger'></span>";
-
                 remove = document.createElement("button");
                 remove.setAttribute("class", "btn btn-default btn-lg remove");
                 remove.setAttribute("type", "button");
-                remove.setAttribute("style", "float:right; visibility:hidden;")
+                remove.setAttribute("style", "margin-right:20px;")
                 remove.setAttribute("onclick", "removeMe(this);");
                 remove.innerHTML = "<span class='glyphicon glyphicon-remove'></span>";
 
                 li = document.createElement("li");
                 li.setAttribute("style", "margin-bottom:10px;")
-                li.appendChild(move);
-                li.appendChild(button);
                 li.appendChild(remove);
+                li.appendChild(button);
 
                 ol = document.getElementById("shotList");
                 ol.appendChild(li);
             }
 
-            function removeMe(element){
+            function removeMe(element) {
                 rm = element;
                 rm.parentNode.parentNode.removeChild(rm.parentNode);
             }
 
-            function startShotEditMode() {
-                [].forEach.call($('#shotList button.move'), function(element) {
-                    element.setAttribute("style", "margin-right:20px; visibility:visible;");
-                });
-
-                [].forEach.call($('#shotList button.remove'), function(element) {
-                    element.setAttribute("style", "float:right; visibility:visible;");
-                });
-
-                edit = document.getElementById("shotEdit");
-                edit.innerHTML = "Done";
-                edit.setAttribute("class", "btn btn-warning btn-sm");
-                edit.setAttribute("onclick", "endShotEditMode()");
-            }
-
-            function endShotEditMode() {
-                [].forEach.call($('#shotList button.move'), function(element) {
-                    element.setAttribute("style", "margin-right:-50px; visibility:hidden;");
-                });
-
-                [].forEach.call($('#shotList button.remove'), function(element) {
-                    element.setAttribute("style", "float:right; visibility:hidden;");
-                });
-
-                edit = document.getElementById("shotEdit");
-                edit.innerHTML = "Edit  <span class='glyphicon glyphicon-pencil'></span>";
-                edit.setAttribute("class", "btn btn-default btn-sm");
-                edit.setAttribute("onclick", "startShotEditMode()");
-            }
-
             function addDC() {
-                document.getElementById("DCEdit").style.visibility = "visible";
+                defenseCrossed = $('#dCrossed label.active input').val();
+                speed = $('#dSuccess label.active input').val();
+
+                if (typeof defenseCrossed === "undefined" || typeof speed === "undefined") {
+                    alert("Please fill in both fields...");
+                    return;
+                }
 
                 button = document.createElement("button");
                 button.setAttribute("class", "btn btn-default btn-lg");
                 button.setAttribute("type", "button");
-                button.innerHTML = "somehow";
-
-                move = document.createElement("button");
-                move.setAttribute("class", "btn btn-default btn-lg move");
-                move.setAttribute("type", "button");
-                move.setAttribute("style", "margin-right:-50px; visibility:hidden;")
-                move.innerHTML = "<span class='glyphicon glyphicon-menu-hamburger'></span>";
+                button.innerHTML = "Crossed the " + defenseCrossed + " " + speed;
 
                 remove = document.createElement("button");
                 remove.setAttribute("class", "btn btn-default btn-lg remove");
                 remove.setAttribute("type", "button");
-                remove.setAttribute("style", "float:right; visibility:hidden;")
+                remove.setAttribute("style", "margin-right:20px;")
                 remove.setAttribute("onclick", "removeMe(this);");
                 remove.innerHTML = "<span class='glyphicon glyphicon-remove'></span>";
 
                 li = document.createElement("li");
                 li.setAttribute("style", "margin-bottom:10px;")
-                li.appendChild(move);
-                li.appendChild(button);
                 li.appendChild(remove);
+                li.appendChild(button);
 
                 ol = document.getElementById("DCList");
                 ol.appendChild(li);
-            }
-
-            function startDCEditMode() {
-                [].forEach.call($('#DCList button.move'), function(element) {
-                    element.setAttribute("style", "margin-right:20px; visibility:visible;");
-                });
-
-                [].forEach.call($('#DCList button.remove'), function(element) {
-                    element.setAttribute("style", "float:right; visibility:visible;");
-                });
-
-                edit = document.getElementById("DCEdit");
-                edit.innerHTML = "Done";
-                edit.setAttribute("class", "btn btn-warning btn-sm");
-                edit.setAttribute("onclick", "endDCEditMode()");
-            }
-
-            function endDCEditMode() {
-                [].forEach.call($('#DCList button.move'), function(element) {
-                    element.setAttribute("style", "margin-right:-50px; visibility:hidden;");
-                });
-
-                [].forEach.call($('#DCList button.remove'), function(element) {
-                    element.setAttribute("style", "float:right; visibility:hidden;");
-                });
-
-                edit = document.getElementById("DCEdit");
-                edit.innerHTML = "Edit  <span class='glyphicon glyphicon-pencil'></span>";
-                edit.setAttribute("class", "btn btn-default btn-sm");
-                edit.setAttribute("onclick", "startDCEditMode()");
             }
 
             function endMatch() {
@@ -657,9 +496,6 @@
                 document.getElementById("autoBox").style.visibility = "hidden";
                 document.getElementById("teleBox").style.visibility = "hidden";
                 document.getElementById("postBox").style.visibility = "hidden";
-
-                document.getElementById("shotEdit").style.visibility = "hidden";
-                document.getElementById("DCEdit").style.visibility = "hidden";
 
                 document.getElementById("youare").innerHTML = "You are: " + persist.user.name + " <small><a href='#' onclick='matchMinus()'>Not You?</a></small>";
                 document.getElementById("scouting").innerHTML = "You are scouting team: " + persist.match.robot;
