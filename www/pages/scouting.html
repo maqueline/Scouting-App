@@ -30,9 +30,11 @@
                 <h1>Quick Orientation:</h1>
                 <div class="row">
                     <div class="col-xs-8">
-                        <h4 id="youare">You are:</h4>
-                        <h4 id="scouting">You are scouting team:</h4>
-                        <h4 id="bet">You bet on:</h4>
+                        <div style="padding-left:20px">
+                            <h4 id="youare">You are:</h4>
+                            <h4 id="scouting">You are scouting team:</h4>
+                            <h4 id="bet">You bet on:</h4>
+                        </div>
                     </div>
                     <div class="col-xs-4">
                         <button type="button" class="btn btn-warning btn-lg" data-toggle="modal" data-target="#missingRobot">Missing Robot!</button>
@@ -85,7 +87,7 @@
                     </div>
                 </div>
                 <br>
-                <button type="button" class="btn btn-primary btn-block btn-lg" onclick="startMatch()">Start Match</button>
+                <button type="button" class="btn btn-primary btn-block btn-lg" onclick="startMatch()">START MATCH</button>
             </div>
             <div id="autoBox">
                 <h1>Autonomous</h1>
@@ -148,29 +150,25 @@
                 <h1>Teleop</h1>
                 <div class="container">
                     <div class="row" id="shotBox">
+                        <h3>Shots</h3>
                         <div class="row">
-                            <h3>Shots</h3>
-                        </div>
-                        <div class="row">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-xs-6">
-                                        <div class="btn-group" data-toggle="buttons" id="teleGoalType">
-                                            <label class="btn btn-lg btn-success"><input type="radio" class="toggle" value="low">low</label>
-                                            <label class="btn btn-lg btn-success"><input type="radio" class="toggle" value="high">high</label>
-                                        </div>
+                            <div class="container text-center">
+                                <div class="col-xs-6">
+                                    <div class="btn-group" data-toggle="buttons" id="teleGoalType">
+                                        <label class="btn btn-lg btn-success"><input type="radio" class="toggle" value="low">low</label>
+                                        <label class="btn btn-lg btn-success"><input type="radio" class="toggle" value="high">high</label>
                                     </div>
-                                    <div class="col-xs-6">
-                                        <div class="btn-group" data-toggle="buttons" id="teleGoalSuccess">
-                                            <label class="btn btn-lg btn-success"><input type="radio" class="toggle" value="successfully">success</label>
-                                            <label class="btn btn-lg btn-success"><input type="radio" class="toggle" value="unsuccessfully">failure</label>
-                                        </div>
+                                </div>
+                                <div class="col-xs-6">
+                                    <div class="btn-group" data-toggle="buttons" id="teleGoalSuccess">
+                                        <label class="btn btn-lg btn-success"><input type="radio" class="toggle" value="successfully">success</label>
+                                        <label class="btn btn-lg btn-success"><input type="radio" class="toggle" value="unsuccessfully">failure</label>
                                     </div>
                                 </div>
                             </div>
                             <br>
                             <div class="text-center">
-                                <button type="button" class="btn btn-primary btn-lg" onclick="addShot()"><span class="glyphicon glyphicon-plus"></span> Add a shot...</button>
+                                <button type="button" class="btn btn-primary btn-lg" onclick="addShot()"><span class="glyphicon glyphicon-plus"></span> SHOT</button>
                             </div>
                         </div>
                         <br>
@@ -189,14 +187,10 @@
                     </div>
                     <br>
                     <div class="row" id="DCBox">
-                        <div class="row">
-                            <h3>Defense Crossings</h3>
-                        </div>
+                        <h3>Defense Crossings</h3>
                         <div class="row">
                             <div class="container text-center">
-                                <div class="row">
-                                    <div class="btn-group btn-group-justified" data-toggle="buttons" id="dCrossed"></div>
-                                </div>
+                                <div class="btn-group btn-group-justified" data-toggle="buttons" id="dCrossed"></div>
                                 <br>
                                 <div class="row">
                                     <div class="btn-group" data-toggle="buttons" id="dSuccess">
@@ -208,7 +202,7 @@
                             </div>
                             <br>
                             <div class="text-center">
-                                <button type="button" class="btn btn-primary btn-lg" onclick="addDC()"><span class="glyphicon glyphicon-plus"></span> Add a defense crossing...</button>
+                                <button type="button" class="btn btn-primary btn-lg" onclick="addDC()"><span class="glyphicon glyphicon-plus"></span> DEFENSE CROSSING<button>
                             </div>
                         </div>
                         <br>
@@ -227,7 +221,7 @@
                     </div>
                 </div>
                 <br>
-                <button type="button" class="btn btn-primary btn-block btn-lg" onclick="endMatch()">End Match</button>
+                <button type="button" class="btn btn-primary btn-block btn-lg" onclick="endMatch()">END MATCH</button>
             </div>
             <div id="postBox">
                 <h1>Post Match Questions</h1>
@@ -498,7 +492,6 @@
                 inn = document.createElement("input");
                 inn.setAttribute("type", "radio");
                 inn.setAttribute("class", "toggle");
-                inn.setAttribute("onclick", "[].forEach.call($('#dCrossed label'), function(element) {element.setAttribute('class', 'btn btn-lg btn-success'');}); this.setAttribute('class', 'btn btn-lg btn-success active')");
                 inn.setAttribute("value", text);
 
                 label = document.createElement("label");

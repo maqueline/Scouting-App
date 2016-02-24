@@ -94,7 +94,7 @@ function login(form) {
     "i22": "Robin Attey",
     "i33": "Alexander Mackworth",
     "i37": "Kobi Saha",
-    "i42": "Colby Skeggs",
+    "i42": "Cel Skeggs",
     "i96": "Liam Bendicksen",
     "i98": "Iman Wahle",
     "i99": "Aidan Smith"
@@ -136,27 +136,45 @@ function sendOff(spec) {
     console.log(spec);
 }
 
-var app = {
-    initialize: function() {
-        this.bindEvents();
-    },
+function onDeviceReady() { //request the persistent file system
+    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onFSSuccess, onError);
+    logit("hello");
+}
 
-    bindEvents: function() {
-        document.addEventListener('deviceready', this.onDeviceReady, false);
-    },
+function init() {
+    document.addEventListener("deviceready", onDeviceReady, true);
+    logit("hi");
+}
 
-    onDeviceReady: function() {
-        app.receivedEvent('deviceready');
-    },
+function onFSSuccess(fs) { 
+    fileSystem = fs;
+    getById("#dirListingButton").addEventListener("touchstart", doDirectoryListing);
+    getById("#addFileButton").addEventListener("touchstart", doAppendFile);
+    getById("#readFileButton").addEventListener("touchstart", doReadFile);
+    getById("#metadataFileButton").addEventListener("touchstart", doMetadataFile);
+    getById("#deleteFileButton").addEventListener("touchstart", doDeleteFile);
+    logit("Got the file system: "+fileSystem.name +"<br/>" + "root entry name is "+fileSystem.root.name + "<p/>");
+    doDirectoryListing();
+}
 
-    receivedEvent: function(id) {
-        var parentElement = document.getElementById(id);
-        var listeningElement = parentElement.querySelector('.listening');
-        var receivedElement = parentElement.querySelector('.received');
+function gotFiles(entries) {
+    var s = "";
+    for (var i = 0, len = entries.length; i < len; i++) { 
+        //entry objects include: isFile, isDirectory, name, fullPath
+        s += entries[i].fullPath;
+        if (entries[i].isFile) {
+            s += " [F]";
+        } else { 
+            s += " [D]";
+        } 
+        s += "<br/>";
+    } 
+    s += "<p/>";
+    logit(s);
+} 
 
-        listeningElement.setAttribute('style', 'display:none;');
-        receivedElement.setAttribute('style', 'display:block;');
-
-        console.log('Received Event: ' + id);
-    }
-};
+function doDirectoryListing(e) { 
+    //get a directory reader from our FS 
+    var dirReader = fileSystem.root.createReader();
+    dirReader.readEntries(gotFiles,onError);
+}

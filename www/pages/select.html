@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>jQuery UI Droppable - Default functionality</title>
+		<link rel="stylesheet" href="../css/index.css">
+		<link rel="stylesheet" href="../css/bootstrap.css">
+		<script src="../js/jquery-2.2.0.min.js"></script>
+		<script src="../js/jquery-ui.js"></script>
+		<script src="../js/bootstrap.min.js"></script>
+
+		<style>
+			.droppable { width: 150px; height: 150px; padding: 0.5em; float: left; margin: 10px; background-color: red; }
+			#gray { z-index: -1; display: none; background-color: gray; }
+		</style>
+
+		<script>
+			$(function() {
+				$("#draggable").draggable({
+					handle: "div",
+					start: function(event, ui) {
+							document.getElementById("gray").style.display = "block";
+					},
+					stop: function(event, ui) {
+							document.getElementById("gray").style.display = "none";
+					},
+					revert: true,
+					revertDuration: 90,
+					snap: true,
+					snapMode: "inner",
+				});
+				$(".droppable").droppable({
+					drop: function(event, ui) {
+							
+							//$(this).addClass("ui-state-highlight").find("p").html("Dropped!");
+						},
+					tolerance: "pointer",
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<div class="container text-center">
+			<div id="draggable" class="ui-widget-content">
+				<div type="button" class="btn btn-lg btn-primary">Login</div>
+			</div>
+			<div id="gray">
+				<div id="a" class="ui-widget-header droppable text-center">
+					<p>Portcullis</p>
+				</div>
+				<div id="b" class="ui-widget-header droppable text-center">
+					<p>Moat</p>
+				</div>
+				<div id="c" class="ui-widget-header droppable text-center">
+					<p>Drawbridge</p>
+				</div>
+				<div id="d" class="ui-widget-header droppable text-center">
+					<p>Rock Wall</p>
+				</div>
+			</div>
+		</div>	
+	</body>
+</html>
+<!DOCTYPE HTML> 
+<html>
+	<head>
+		<meta name="viewport" content="width=320; user-scalable=no" />
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+		<title>Minimal AppLaud App</title>
+		<script type="text/javascript" charset="utf-8" src="phonegap-1.4.1.js"></script> 
+		<script type="text/javascript" charset="utf-8"> 
+		var fileSystem; 
+
+		//generic getById function 
+		getById(id) { return document.querySelector(id); } 
+
+		//generic content logger function 
+		logit(s) { getById("#content").innerHTML += s; } 
+
+		//generic error handler function 
+		onError(e) { getById("#content").innerHTML = "<h2>Error</h2>"+e.toString(); } 
+
+		function doDeleteFile(e) { 
+			fileSystem.root.getFile("test.txt", {create:true}, function(f) { 
+																	f.remove(function() { 
+																					logit("File removed<p/>"); 
+																				}); 
+																			}, onError); 
+		} 
+
+		function metadataFile(m) { 
+			logit("File was last modified "+m.modificationTime+"<p/>"); 
+		} 
+
+		function doMetadataFile(e) { 
+			fileSystem.root.getFile("test.txt", {create:true}, function(f) { 
+																	f.getMetadata(metadataFile,onError); 
+																}, onError); 
+		}
+
+		function readFile(f) {
+			reader = new FileReader();
+			reader.onloadend = function(e) { 
+				console.log("go to end");
+				logit("<pre>" + e.target.result + "</pre><p/>");
+			} 
+			reader.readAsText(f);
+		}
+
+		function doReadFile(e) { 
+			fileSystem.root.getFile("test.txt", {create:true}, readFile, onError); 
+		}
+
+		function appendFile(f) { 
+			f.createWriter(function(writerOb) { 
+				writerOb.onwrite=function() { 
+					logit("Done writing to file.<p/>");
+				} 
+				//go to the end of the file... 
+				writerOb.seek(writerOb.length);
+				writerOb.write("Test at "+new Date().toString() + "\n");
+			});
+		}
+
+		function doAppendFile(e) {
+			fileSystem.root.getFile("test.txt", {create:true}, appendFile, onError);
+		}
+
+		function gotFiles(entries) {
+		    var s = "";
+		    for (var i = 0, len = entries.length; i < len; i++) { 
+		        //entry objects include: isFile, isDirectory, name, fullPath
+		        s += entries[i].fullPath;
+		        if (entries[i].isFile) {
+		            s += " [F]";
+		        } else { 
+		            s += " [D]";
+		        } 
+		        s += "<br/>";
+		    } 
+		    s += "<p/>";
+		    logit(s);
+		} 
+
+		function doDirectoryListing(e) { 
+		    //get a directory reader from our FS 
+		    var dirReader = fileSystem.root.createReader();
+		    dirReader.readEntries(gotFiles,onError);
+		}
+
+		function onFSSuccess(fs) { 
+		    fileSystem = fs;
+		    getById("#dirListingButton").addEventListener("touchstart", doDirectoryListing);
+		    getById("#addFileButton").addEventListener("touchstart", doAppendFile);
+		    getById("#readFileButton").addEventListener("touchstart", doReadFile);
+		    getById("#metadataFileButton").addEventListener("touchstart", doMetadataFile);
+		    getById("#deleteFileButton").addEventListener("touchstart", doDeleteFile);
+		    logit("Got the file system: "+fileSystem.name +"<br/>" + "root entry name is "+fileSystem.root.name + "<p/>");
+		    doDirectoryListing();
+		}
+
+		function onDeviceReady() { 
+			//request the persistent file system 
+			window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onFSSuccess, onError);
+		}
+
+		function init() { document.addEventListener("deviceready", onDeviceReady, true); } 
+		</script> 
+
+		<style> button { width: 100%; padding: 5px; } </style> 
+	</head> 
+	<body onload="init();" id="stage" class="theme"> 
+		<button id="addFileButton">Create/Append to Test File</button>
+		<button id="readFileButton">Read Test File</button>
+		<button id="metadataFileButton">Get Test File Metadata</button>
+		<button id="deleteFileButton">Delete Test File</button>
+		<button id="dirListingButton">Show Directory Contents</button>
+		<div id="content">
+			
+		</div>
+	</body>
+</html>
