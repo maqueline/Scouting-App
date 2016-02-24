@@ -10,14 +10,13 @@
             <input type="submit" value="Save" />
         </form>
 
-
-        <dl id="definitions">
-
-        </dl>
+        <div id="definitions">
+            
+        </div>
     </body>
     <script src="phonegap.js"></script>
     <script>
-        var FILENAME = 'database.db',
+        var FILENAME = 'database.txt',
             $ = function (id) {
                 return document.getElementById(id);
             },
@@ -57,14 +56,14 @@
             dbEntries.push('<dt>' + name + '</dt><dd>' + desc + '</dd>')
             $('name').value = '';
             $('desc').value = '';
-            $('definitions').innerHTML = dbEntries.join('');
+            $('definitions').innerHTML += name + " " + desc;
             if (file.writer.available) {
                 file.writer.available = false;
                 file.writer.object.onwriteend = function (evt) {
                     file.writer.available = true;
                     file.writer.object.seek(0);
                 }
-                file.writer.object.write(dbEntries.join("\n"));
+                file.writer.object.write("\n" + name + "," + desc);
             }
             return false;
         }
