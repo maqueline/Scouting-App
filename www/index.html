@@ -42,6 +42,7 @@
             var fail = failCB('createWriter');
             file.entry = fileEntry;
             fileEntry.createWriter(gotFileWriter, fail);
+            readText();
         }
         function gotFileWriter(fileWriter) {
             file.writer.available = true;
@@ -68,11 +69,6 @@
             if (file.entry) {
                 file.entry.file(function (dbFile) {
                     var reader = new FileReader();
-                    reader.onloadend = function (evt) {
-                        var textArray = evt.target.result.split("\n");
-                        dbEntries = textArray.concat(dbEntries);
-                        $('definitions').innerHTML = dbEntries.join('');
-                    }
                     reader.readAsText(dbFile);
                 }, failCB("FileReader"));
             }
