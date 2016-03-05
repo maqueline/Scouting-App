@@ -82,7 +82,7 @@ function login(form) {
     //     persist.users = JSON.parse(response);
     // });
     // console.log(persist.users);
-    var json = `{
+    var json = {
     "i1": "Ross Geller",
     "i2": "Monica Geller-Bing",
     "i3": "Chandler Bing",
@@ -98,9 +98,10 @@ function login(form) {
     "i96": "Liam Bendicksen",
     "i98": "Iman Wahle",
     "i99": "Aidan Smith"
-}`;
+};
 
-    persist.people = JSON.parse(json);
+    //persist.people = JSON.parse(json);
+    persist.people = json;
 
     var ID = "i" + String(form.inputID.value);
     console.log(ID);
