@@ -16,7 +16,7 @@
             <div id="formContainer">
                 <form id="loginForm">
                     <h2>Stand Scouting Login</h2>
-                    <input type="number" name="inputID" class="form-control" placeholder="ID" autofocus required autocomplete="off">
+                    <input type="number" name="inputID" onKeyDown="if(event.keyCode==13) login(this.form);" class="form-control" placeholder="ID" autofocus required autocomplete="off">
                     <br>
                     <button type="button" class="btn btn-lg btn-primary btn-block" onClick="login(this.form)">Login</button>
                 </form>
