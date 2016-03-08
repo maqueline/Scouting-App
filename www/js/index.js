@@ -210,7 +210,7 @@ function onDeviceReady() { //request the persistent file system
         }, errorHandler.bind(null, fileName));
     }
 
-    writeToFile('example.json', { foo: 'bar' });
+    writeToFile('beebalm.json', { foo: 'bar' });
 
     var errorHandler = function (fileName, e) {  
         var msg = '';

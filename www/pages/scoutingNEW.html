@@ -1,54 +1,559 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="utf-8" />
-        <meta name="format-detection" content="telephone=no" />
-        <meta name="msapplication-tap-highlight" content="no" />
+        <meta charset="utf-8">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-        <link rel="stylesheet" href="../css/index.css" />
-        <link rel="stylesheet" href="../css/bootstrap.css" />
+        <link rel="stylesheet" href="../css/index.css">
+        <link rel="stylesheet" href="../css/bootstrap.css">
 
-        <script type="text/javascript">
-        var persist = {};
-
-        function populate() {
-            persist = JSON.parse(window.name);
-
-            document.getElementById("gameInfo").innerHTML = "Scouting robot " + persist.match.robot + " in match " + persist.match.number;
-            document.getElementById("youare").innerHTML = "You are: " + persist.user.name;
-            document.getElementById("scouting").innerHTML = "You are scouting team: " + persist.match.robot;
-            document.getElementById("betting").innerHTML = "You bet on: " + persist.user.lastbet;
-        }
-        window.onload = populate;
-        </script>
-
-        <title>Scouting</title>
+        <title>Scout Page</title>
     </head>
-    <body>
-        <nav class="navbar navbar-dark bg-primary">
-            <p class="navbar-brand" id="gameInfo">Scouting...</p>
-            <button type="button" class="btn">Robot Disabled</button>
+    <body onload="populate()">
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                    <button type="button" id="rdbtn" class="navbar-toggle btn" data-toggle="modal" data-target="#disabledRobot">
+                        Robot Disabled
+                    </button>
+                <p class="navbar-text" id="navscouting">Scouting:</p>
+                <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#disabledRobot" style="margin-top: 6px;" id="rdbtn">Robot Disabled</button>
+                </ul>
+                </div>
+            </div>
         </nav>
         <div class="container">
-            <div class="row" id="orient">
-                <div class="row" id="checkMatch">
-                    <h1>Quick Orientation</h1>
+            <div id="orient">
+                <h1>Quick Orientation:</h1>
+                <div class="row">
                     <div class="col-xs-8">
-                        <h4 id="youare"></h4>
-                        <h4 id="scouting"></h4>
-                        <h4 id="betting"></h4>
+                        <div style="padding-left:20px">
+                            <h4 id="youare">You are:</h4>
+                            <h4 id="scouting">You are scouting team:</h4>
+                            <h4 id="bet">You bet on:</h4>
+                        </div>
                     </div>
                     <div class="col-xs-4">
-                        <button type="button" class="btn btn-lg">Missing Robot!</button>
+                        <button type="button" class="btn btn-warning btn-lg" data-toggle="modal" data-target="#missingRobot">Missing Robot!</button>
+                    </div>
+                </div>
+                <div class="text-center container row">
+                    <div class="col-xs-3">
+                        <div class="row">
+                            <h2>A</h2>
+                        </div>
+                        <div class="row">
+                            <div class="btn-group btn-group-vertical" data-toggle="buttons" id="aD">
+                                <label class="btn btn-success"><input type="radio" class="toggle" value="portcullis">Portcullis</label>
+                                <label class="btn btn-success"><input type="radio" class="toggle" value="cheval de frise">Cheval de Frise</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-3">
+                        <div class="row">
+                            <h2>B</h1>
+                        </div>
+                        <div class="row">
+                            <div class="btn-group btn-group-vertical" data-toggle="buttons" id="bD">
+                                <label class="btn btn-success"><input type="radio" class="toggle" value="moat">Moat</label>
+                                <label class="btn btn-success"><input type="radio" class="toggle" value="ramparts">Ramparts</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-3">
+                        <div class="row">
+                            <h2>C</h1>
+                        </div>
+                        <div class="row">
+                            <div class="btn-group btn-group-vertical" data-toggle="buttons" id="cD">
+                                <label class="btn btn-success"><input type="radio" class="toggle" value="drawbridge">Drawbridge</label>
+                                <label class="btn btn-success"><input type="radio" class="toggle" value="sally port">Sally Port</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-3">
+                        <div class="row">
+                            <h2>D</h1>
+                        </div>
+                        <div class="row">
+                            <div class="btn-group btn-group-vertical" data-toggle="buttons" id="dD">
+                                <label class="btn btn-success"><input type="radio" class="toggle" value="rock wall">Rock Wall</label>
+                                <label class="btn btn-success"><input type="radio" class="toggle" value="rough terrain">Rough Terrain</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <button type="button" class="btn btn-primary btn-block btn-lg" onclick="startMatch()">START MATCH</button>
+            </div>
+            <div id="autoBox">
+                <h1>Autonomous</h1>
+                <div id="robotStarting" class="row">
+                    <div class="col-xs-6">
+                        <h4>Robot is starting...</h4>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="dropdown">
+                            <button class="btn btn-default dropdown-toggle" type="button" id="rstart" data-toggle="dropdown">in the spy box. <span class="caret"></span></button>
+                            <ul id="autoStartDDL" class="dropdown-menu"></ul>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div id="robotInteraction" class="row">
+                    <div class="col-xs-3">
+                        <h4>Interacted with... </h4>
+                    </div>
+                    <div class="col-xs-5">
+                        <div class="row">
+                            <div class="col-xs-8">
+                                <div class="dropdown">
+                                    <button class="btn btn-default dropdown-toggle" type="button" id="rinter" data-toggle="dropdown">no defenses <span class="caret"></span></button>
+                                    <ul id="dInterDDL" class="dropdown-menu"></ul>
+                                </div>
+                            </div>
+                            <div class="col-xs-4">
+                                <h4>by...</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-4">
+                        <div class="dropdown">
+                            <button class="btn btn-default dropdown-toggle" type="button" id="rby" data-toggle="dropdown">doing nothing <span class="caret"></span></button>
+                            <ul id="dByDDL" class="dropdown-menu"></ul>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div id="robotScore" class="row">
+                    <div class="col-xs-3">
+                        <h4>Scored in... </h4>
+                    </div>
+                    <div class="col-xs-5">
+                        <div class="btn-group btn-group-justified" data-toggle="buttons" id="autoscore">
+                            <label class="btn btn-lg btn-success"><input type="radio" class="toggle" value="low">low</label>
+                            <label class="btn btn-lg btn-success"><input type="radio" class="toggle" value="high">high</label>
+                            <label class="btn btn-lg btn-success"><input type="radio" class="toggle" value="no">no</label>
+                        </div>
+                    </div>
+                    <div class="col-xs-4">
+                        <h4>goal.</h4>
+                    </div>
+                </div>
+                <br>
+                <button type="button" class="btn btn-primary btn-block btn-lg" onclick="startTele()">Start Teleop</button>
+            </div>
+            <div id="teleBox">
+                <h1>Teleop</h1>
+                <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                    <div class="row" id="shotBox">
+                        <h3>Shots</h3>
+                        <div class="row">
+                            <div class="container text-center">
+                                <div class="col-xs-6">
+                                    <div class="btn-group" data-toggle="buttons" id="teleGoalType">
+                                        <label class="btn btn-lg btn-success"><input type="radio" class="toggle" value="low">low</label>
+                                        <label class="btn btn-lg btn-success"><input type="radio" class="toggle" value="high">high</label>
+                                    </div>
+                                </div>
+                                <div class="col-xs-6">
+                                    <div class="btn-group" data-toggle="buttons" id="teleGoalSuccess">
+                                        <label class="btn btn-lg btn-success"><input type="radio" class="toggle" value="successfully">success</label>
+                                        <label class="btn btn-lg btn-success"><input type="radio" class="toggle" value="unsuccessfully">failure</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="text-center">
+                                <button type="button" class="btn btn-primary btn-lg" onclick="addShot()"><span class="glyphicon glyphicon-plus"></span> SHOT</button>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row" id="shotView">
+                            <ul id="shotList"></ul>
+                        </div>
+                    </div>
+                    </div>
+                    <br>
+                    <div class="col-sm-6">
+                    <div class="row" id="DCBox">
+                        <h3>Defense Crossings</h3>
+                        <div class="row">
+                            <div class="container text-center">
+                                <div class="btn-group btn-group-justified" data-toggle="buttons" id="dCrossed">
+                                    <label id="dcA" class="btn btn-lg btn-success"><input type="radio" class="toggle" value="defense A">A</label>
+                                    <label id="dcB" class="btn btn-lg btn-success"><input type="radio" class="toggle" value="defense B">B</label>
+                                    <label id="dcC" class="btn btn-lg btn-success"><input type="radio" class="toggle" value="defense C">C</label>
+                                    <label id="dcD" class="btn btn-lg btn-success"><input type="radio" class="toggle" value="defense D">D</label>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="btn-group" data-toggle="buttons" id="dSuccess">
+                                        <label class="btn btn-lg btn-success"><input type="radio" class="toggle" value="slowly">slow</label>
+                                        <label class="btn btn-lg btn-success"><input type="radio" class="toggle" value="with average speed">average</label>
+                                        <label class="btn btn-lg btn-success"><input type="radio" class="toggle" value="speedily">fast</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="text-center">
+                                <button type="button" class="btn btn-primary btn-lg" onclick="addDC()"><span class="glyphicon glyphicon-plus"></span> DEFENSE CROSSING</button>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row" id="DCView">
+                            <ul id="DCList"></ul>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                <br>
+                <button type="button" class="btn btn-primary btn-block btn-lg" onclick="endMatch()">END MATCH</button>
+            </div>
+            </div>
+            <div id="postBox">
+                <h1>Post Match Questions</h1>
+                <div class="row">
+                    <div class="col-xs-6 text-center">
+                        <h4>Did they challenge?</h4>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="btn-group" data-toggle="buttons" id="captured">
+                            <label class="btn btn-lg btn-success"><input type="radio" class="toggle" value="yes">yes</label>
+                            <label class="btn btn-lg btn-success"><input type="radio" class="toggle" value="no">no</label>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-xs-6 text-center">
+                        <h4>Did they scale?</h4>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="btn-group" data-toggle="buttons" id="scaled">
+                            <label class="btn btn-lg btn-success"><input type="radio" class="toggle" value="yes">yes</label>
+                            <label class="btn btn-lg btn-success"><input type="radio" class="toggle" value="no">no</label>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <a href="thanks.html"><button type="button" class="btn btn-primary btn-block btn-lg" onclick="submitMatch()">Submit Match</button></a>
+            </div>
+        </div>
+        <div id="modalkeeper">
+            <div id="disabledRobot" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">How did the robot get disabled?</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="radio">
+                                <label><input type="radio" name="missingRobot" class="toggle" value="tipped">It tipped, and now it's just laying there watching other able-bodied robots fly by.</label>
+                            </div>
+                            <div class="radio">
+                                <label><input type="radio" name="missingRobot" class="toggle" value="broken">It broke somehow.</label>
+                            </div>
+                            <div class="radio">
+                                <label><input type="radio" name="missingRobot" class="toggle" value="noshow">It never actually showed up but I hit "Start Match" too early.</label>
+                            </div>
+                            <div class="radio">
+                                <label><input type="radio" name="missingRobot" class="toggle" value="noshow">It's a mystery! One second it was going and the next it wasn't going anymore...</label>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal" onclick="disabledRobot()">OK</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="missingRobot" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">My robot is missing because...</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="radio">
+                                <label><input type="radio" name="missingRobot" class="toggle" value="wrongmatch">it's not even supposed to be in this match...</label>
+                            </div>
+                            <div class="radio">
+                                <label><input type="radio" name="missingRobot" class="toggle" value="broken">it's broken.</label>
+                            </div>
+                            <div class="radio">
+                                <label><input type="radio" name="missingRobot" class="toggle" value="noshow">it never even showed up!</label>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal" onclick="missingRobot()">OK</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="setMatchNumber" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Manual Match Choice</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="dropdown">
+                                <button class="btn btn-default dropdown-toggle" type="button" id="dLabel" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Choose match number...<span class="caret"></span></button>
+                                <ul class="dropdown-menu" aria-labelledby="dLabel">
+                                    <li><a href="#" onclick="document.getElementById('dLabel').innerHTML = this.innerHTML">1</a></li>
+                                    <li><a href="#" onclick="document.getElementById('dLabel').innerHTML = this.innerHTML">2</a></li>
+                                    <li><a href="#" onclick="document.getElementById('dLabel').innerHTML = this.innerHTML">3</a></li>
+                                    <li><a href="#" onclick="document.getElementById('dLabel').innerHTML = this.innerHTML">4</a></li>
+                                    <li><a href="#" onclick="document.getElementById('dLabel').innerHTML = this.innerHTML">5</a></li>
+                                    <li><a href="#" onclick="document.getElementById('dLabel').innerHTML = this.innerHTML">6</a></li>
+                                    <li><a href="#" onclick="document.getElementById('dLabel').innerHTML = this.innerHTML">7</a></li>
+                                    <li><a href="#" onclick="document.getElementById('dLabel').innerHTML = this.innerHTML">8</a></li>
+                                    <li><a href="#" onclick="document.getElementById('dLabel').innerHTML = this.innerHTML">9</a></li>
+                                    <li><a href="#" onclick="document.getElementById('dLabel').innerHTML = this.innerHTML">10</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal" onclick="resetMatchNumber()">OK</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="modalmodal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">TITLE</h4>
+                        </div>
+                        <div class="modal-body">
+                            
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
         <script src="cordova.js"></script>
         <script src="../js/jquery-2.2.0.min.js"></script>
-        <script src="../js/tether.min.js"></script>
         <script src="../js/bootstrap.min.js"></script>
         <script src="../js/index.js"></script>
+        <script src="../js/Sortable.min.js"></script>
+        <script type="text/javascript">
+            persist = JSON.parse(window.name);
+
+            function startMatch() {
+                document.getElementById("rdbtn").style.visibility = "visible";
+                document.getElementById("autoBox").style.visibility = "visible";
+                document.getElementById("orient").style.display = "none";
+
+
+                aD = $('#aD label.active input').val();
+                bD = $('#bD label.active input').val();
+                cD = $('#cD label.active input').val();
+                dD = $('#dD label.active input').val();
+
+                console.log(aD);
+
+                ul = document.getElementById("autoStartDDL");
+                ul.appendChild(makeDDLI("in the spy box.", "rstart"));
+                ul.appendChild(makeDDLI("by the " + aD + ".", "rstart"));
+                ul.appendChild(makeDDLI("by the " + bD + ".", "rstart"));
+                ul.appendChild(makeDDLI("by the " + cD + ".", "rstart"));
+                ul.appendChild(makeDDLI("by the " + dD + ".", "rstart"));
+                ul.appendChild(makeDDLI("by the " + "low bar" + ".", "rstart"));
+
+                ul = document.getElementById("dInterDDL");
+                ul.appendChild(makeDDLI("no defenses", "rinter"));
+                ul.appendChild(makeDDLI("the " + aD, "rinter"));
+                ul.appendChild(makeDDLI("the " + bD, "rinter"));
+                ul.appendChild(makeDDLI("the " + cD, "rinter"));
+                ul.appendChild(makeDDLI("the " + dD, "rinter"));
+                ul.appendChild(makeDDLI("the " + "low bar" + ".", "rinter"));
+
+                ul = document.getElementById("dByDDL");
+                ul.appendChild(makeDDLI("doing nothing.", "rby"));
+                ul.appendChild(makeDDLI("crossing.", "rby"));
+                ul.appendChild(makeDDLI("getting there.", "rby"));
+
+                document.getElementById("dcA").innerHTML = '<input type="radio" class="toggle" value="' + aD + '">' + aD;
+                document.getElementById("dcB").innerHTML = '<input type="radio" class="toggle" value="' + bD + '">' + bD;
+                document.getElementById("dcC").innerHTML = '<input type="radio" class="toggle" value="' + cD + '">' + cD;
+                document.getElementById("dcD").innerHTML = '<input type="radio" class="toggle" value="' + dD + '">' + dD;
+                document.getElementById("dcD").innerHTML = '<input type="radio" class="toggle" value="' + "low bar" + '">' + "low bar";
+            }
+
+            function makeDDLI(text, overID) {
+                a = document.createElement("a");
+                a.setAttribute("href", "#");
+                a.setAttribute("onclick", "document.getElementById('" + overID + "').innerHTML = this.innerHTML;");
+                a.innerHTML = text;
+
+                li = document.createElement("li");
+                li.appendChild(a);
+
+                return li;
+            }
+
+            function makeOLI(text) {
+                p = document.createElement("p");
+                p.innerHTML = text;
+
+                inn = document.createElement("input");
+                inn.setAttribute("type", "radio");
+                inn.setAttribute("class", "toggle");
+                inn.setAttribute("value", text);
+
+                label = document.createElement("label");
+                label.setAttribute("class", "btn btn-lg btn-default");
+                label.appendChild(inn);
+                label.appendChild(p);
+
+                return label;
+            }
+
+            function startTele() {
+                document.getElementById("teleBox").style.visibility = "visible";
+                document.getElementById("autoBox").style.display = "none";
+
+            }
+
+            function addShot() {
+                goalType = $('#teleGoalType label.active input').val();
+                success = $('#teleGoalSuccess label.active input').val();
+
+                if (typeof goalType === "undefined" || typeof success === "undefined") {
+                    alert("Please fill in both fields...");
+                    return;
+                }
+                
+                button = document.createElement("button");
+                button.setAttribute("class", "btn btn-default btn-lg");
+                button.setAttribute("type", "button");
+                button.innerHTML = "Shot in the " + goalType + " goal " + success;
+
+                remove = document.createElement("button");
+                remove.setAttribute("class", "btn btn-default btn-lg remove");
+                remove.setAttribute("type", "button");
+                remove.setAttribute("style", "margin-right:20px;")
+                remove.setAttribute("onclick", "removeMe(this);");
+                remove.innerHTML = "<span class='glyphicon glyphicon-remove'></span>";
+
+                li = document.createElement("li");
+                li.setAttribute("style", "margin-bottom:10px;")
+                li.appendChild(remove);
+                li.appendChild(button);
+
+                ol = document.getElementById("shotList");
+                ol.appendChild(li);
+            }
+
+            function removeMe(element) {
+                rm = element;
+                rm.parentNode.parentNode.removeChild(rm.parentNode);
+            }
+
+            function addDC() {
+                defenseCrossed = $('#dCrossed label.active input').val();
+                speed = $('#dSuccess label.active input').val();
+
+                if (typeof defenseCrossed === "undefined" || typeof speed === "undefined") {
+                    alert("Please fill in both fields...");
+                    return;
+                }
+
+                button = document.createElement("button");
+                button.setAttribute("class", "btn btn-default btn-lg");
+                button.setAttribute("type", "button");
+                button.innerHTML = "Crossed the " + defenseCrossed + " " + speed;
+
+                remove = document.createElement("button");
+                remove.setAttribute("class", "btn btn-default btn-lg remove");
+                remove.setAttribute("type", "button");
+                remove.setAttribute("style", "margin-right:20px;")
+                remove.setAttribute("onclick", "removeMe(this);");
+                remove.innerHTML = "<span class='glyphicon glyphicon-remove'></span>";
+
+                li = document.createElement("li");
+                li.setAttribute("style", "margin-bottom:10px;")
+                li.appendChild(remove);
+                li.appendChild(button);
+
+                ol = document.getElementById("DCList");
+                ol.appendChild(li);
+            }
+
+            function endMatch() {
+                document.getElementById("postBox").style.visibility = "visible";
+                document.getElementById("teleBox").style.display = "none";
+            }
+
+            function submitMatch() {
+                persist.match.number = parseInt(persist.match.number) + 1;
+                window.name = JSON.stringify(persist);
+            }
+
+            function populate() {
+                document.getElementById("rdbtn").style.visibility = "hidden";
+                document.getElementById("autoBox").style.visibility = "hidden";
+                document.getElementById("teleBox").style.visibility = "hidden";
+                document.getElementById("postBox").style.visibility = "hidden";
+
+                document.getElementById("youare").innerHTML = "You are: " + persist.user.name + " <small><a href='#' onclick='matchMinus()'>Not You?</a></small>";
+                document.getElementById("scouting").innerHTML = "You are scouting team: " + persist.match.robot;
+                document.getElementById("navscouting").innerHTML = "Scouting: " + persist.match.robot + " in match " + persist.match.number;
+                document.getElementById("bet").innerHTML = "You bet on: " + persist.user.lastbet;
+
+                Sortable.create(document.getElementById("shotList"));
+                Sortable.create(document.getElementById("DCList"));
+            }
+
+            function missingRobot() {
+                var reason = $('input[name="missingRobot"]:checked').val();
+                
+                if (reason === "wrongmatch") {
+                    $('#setMatchNumber').modal('toggle')
+                } else if (reason === "broken" || reason === "noshow") {
+                    persist.spec.matches[persist.spec.matches.length - 1].misc.brokenDown = true;
+                    sendOff(persist.spec);
+                    window.location.href = "thanks.html";
+                }
+            }
+
+            function disabledRobot() {
+                persist.spec.matches[persist.spec.matches.length - 1].misc.brokenDown = true;
+                sendOff(persist.spec);
+                window.location.href = "thanks.html";
+            }
+
+            function resetMatchNumber() {
+                n = document.getElementById('dLabel').innerHTML;
+                persist.match.number = n;
+                window.name = JSON.stringify(persist);
+                window.location.href = "scouting.html";
+            }
+
+            function matchMinus() {
+                n = parseInt(persist.match.number);
+                persist.match.number = String(n - 1);
+                console.log(persist.match);
+                window.name = JSON.stringify(persist);
+                window.location.href = "login.html";
+            }
+        </script>
+        <style type="text/css"> 
+            body { padding-top: 70px; }
+            #shotList { list-style-type: none; }
+            #DCList { list-style-type: none; }
+            #crossableDefenses { list-style-type: none; }
+        </style>
     </body>
 </html>
