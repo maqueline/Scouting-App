@@ -154,23 +154,26 @@
                     <div class="row" id="shotBox">
                         <h3>Shots</h3>
                         <div class="row">
-                            <div class="container text-center">
-                                <div class="col-xs-6">
-                                    <div class="btn-group" data-toggle="buttons" id="teleGoalType">
-                                        <label class="btn btn-lg btn-success"><input type="radio" class="toggle" value="low">low</label>
-                                        <label class="btn btn-lg btn-success"><input type="radio" class="toggle" value="high">high</label>
-                                    </div>
-                                </div>
-                                <div class="col-xs-6">
-                                    <div class="btn-group" data-toggle="buttons" id="teleGoalSuccess">
-                                        <label class="btn btn-lg btn-success"><input type="radio" class="toggle" value="successfully">success</label>
-                                        <label class="btn btn-lg btn-success"><input type="radio" class="toggle" value="unsuccessfully">failure</label>
-                                    </div>
+                            <div class="col-xs-6">
+                                <div class="btn-group btn-lg" id="">
+                                    <label id="down" onclick="changeScore('lowSuccess', -1)" class="btn btn-lg btn-success">-1</label>
+                                    <label id="lowSuccess" class="btn btn-lg btn-default">0</label>
+                                    <label id="up" onclick="changeScore('lowSuccess', 1)" class="btn btn-lg btn-success">+1</label>
                                 </div>
                             </div>
-                            <br>
-                            <div class="text-center">
-                                <button type="button" class="btn btn-primary btn-lg" onclick="addShot()"><span class="glyphicon glyphicon-plus"></span> SHOT</button>
+                            <div class="col-xs-6">
+                                <div class="btn-group btn-lg" id="">
+                                    <label id="down" onclick="changeScore('lowFail', -1)" class="btn btn-lg btn-warning">-1</label>
+                                    <label id="lowFail" class="btn btn-lg btn-default">0</label>
+                                    <label id="up" onclick="changeScore('lowFail', 1)" class="btn btn-lg btn-warning">+1</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="btn-group btn-lg" id="">
+                                <label id="down" onclick="changeScore('highSuccess', -1)" class="btn btn-lg btn-success">-1</label>
+                                <label id="highSuccess" class="btn btn-lg btn-default">0</label>
+                                <label id="up" onclick="changeScore('highSuccess', 1)" class="btn btn-lg btn-success">+1</label>
                             </div>
                         </div>
                         <br>
@@ -349,6 +352,12 @@
         <script src="../js/Sortable.min.js"></script>
         <script type="text/javascript">
             persist = JSON.parse(window.name);
+
+            function changeScore(idd, additive){
+                contents = document.getElementById(idd).innerHTML;
+                number = parseInt(contents, 10) + additive;
+                document.getElementById(idd).innerHTML = number;
+            }
 
             function startMatch() {
                 document.getElementById("rdbtn").style.visibility = "visible";
