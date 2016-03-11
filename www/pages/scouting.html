@@ -597,11 +597,45 @@
             }
 
             function toDefense(str) {
-
+                if (str.includes(aD)) {
+                    if (aD.charAt(0) === "p") {
+                        return "PORTCULLIS";
+                    } else {
+                        return "CHIVAL";
+                    }
+                } else if (str.includes(bD)) {
+                    if (bD.charAt(0) === "m") {
+                        return "MOAT";
+                    } else {
+                        return "RAMPARTS";
+                    }
+                } else if (str.includes(cD)) {
+                    if (cD.charAt(0) === "d") {
+                        return "DRAWBRIDGE";
+                    } else {
+                        return "SALLY";
+                    }
+                } else if (str.includes(dD)) {
+                    if (dD.charAt(2) === "c") {
+                        return "ROCKWALL";
+                    } else {
+                        return "TERRAIN";
+                    }
+                } else if (str.includes("spy")) {
+                    return "SPYBOX";
+                } else if (str.includes("low")) {
+                    return "LOWBAR";
+                }
             }
 
             function toCross(str) {
-
+                if (str.charAt(0) === "d") {
+                    return "NONE";
+                } else if (str.charAt(0) === "c") {
+                    return "CROSS";
+                } else if (str.charAt(0) === "g") {
+                    return "REACH";
+                }
             }
 
             function ynToTf(str) {
