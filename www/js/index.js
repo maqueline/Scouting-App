@@ -242,5 +242,5 @@ function onDeviceReady() { //request the persistent file system
 
 function init() {
     document.addEventListener("deviceready", onDeviceReady, true);
-    logit("hi");
+    writeToFile('ininin.json', { foo: 'bar' });
 }
