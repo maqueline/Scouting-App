@@ -241,6 +241,7 @@ function onDeviceReady() { //request the persistent file system
 }
 
 function init() {
+    document.getElementById("blip").innerHTML = cordova.file.dataDirectory;
     document.addEventListener("deviceready", onDeviceReady, true);
     writeToFile('ininin.json', { foo: 'bar' });
 }
