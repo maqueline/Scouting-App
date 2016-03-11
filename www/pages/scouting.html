@@ -47,8 +47,8 @@
                         </div>
                         <div class="row">
                             <div class="btn-group btn-group-vertical" data-toggle="buttons" id="aD">
-                                <label class="btn btn-success"><input type="radio" class="toggle" value="portcullis">Portcullis</label>
-                                <label class="btn btn-success"><input type="radio" class="toggle" value="cheval de frise">Cheval de Frise</label>
+                                <label class="btn btn-lg btn-success"><input type="radio" class="toggle" value="portcullis">Portcullis</label>
+                                <label class="btn btn-lg btn-success"><input type="radio" class="toggle" value="cheval de frise">Cheval de Frise</label>
                             </div>
                         </div>
                     </div>
@@ -58,8 +58,8 @@
                         </div>
                         <div class="row">
                             <div class="btn-group btn-group-vertical" data-toggle="buttons" id="bD">
-                                <label class="btn btn-success"><input type="radio" class="toggle" value="moat">Moat</label>
-                                <label class="btn btn-success"><input type="radio" class="toggle" value="ramparts">Ramparts</label>
+                                <label class="btn btn-lg btn-success"><input type="radio" class="toggle" value="moat">Moat</label>
+                                <label class="btn btn-lg btn-success"><input type="radio" class="toggle" value="ramparts">Ramparts</label>
                             </div>
                         </div>
                     </div>
@@ -69,8 +69,8 @@
                         </div>
                         <div class="row">
                             <div class="btn-group btn-group-vertical" data-toggle="buttons" id="cD">
-                                <label class="btn btn-success"><input type="radio" class="toggle" value="drawbridge">Drawbridge</label>
-                                <label class="btn btn-success"><input type="radio" class="toggle" value="sally port">Sally Port</label>
+                                <label class="btn btn-lg btn-success"><input type="radio" class="toggle" value="drawbridge">Drawbridge</label>
+                                <label class="btn btn-lg btn-success"><input type="radio" class="toggle" value="sally port">Sally Port</label>
                             </div>
                         </div>
                     </div>
@@ -80,8 +80,8 @@
                         </div>
                         <div class="row">
                             <div class="btn-group btn-group-vertical" data-toggle="buttons" id="dD">
-                                <label class="btn btn-success"><input type="radio" class="toggle" value="rock wall">Rock Wall</label>
-                                <label class="btn btn-success"><input type="radio" class="toggle" value="rough terrain">Rough Terrain</label>
+                                <label class="btn btn-lg btn-success"><input type="radio" class="toggle" value="rock wall">Rock Wall</label>
+                                <label class="btn btn-lg btn-success"><input type="radio" class="toggle" value="rough terrain">Rough Terrain</label>
                             </div>
                         </div>
                     </div>
@@ -97,7 +97,7 @@
                     </div>
                     <div class="col-xs-6">
                         <div class="dropdown">
-                            <button class="btn btn-default dropdown-toggle" type="button" id="rstart" data-toggle="dropdown">in the spy box. <span class="caret"></span></button>
+                            <button class="btn btn-lg btn-default dropdown-toggle" type="button" id="rstart" data-toggle="dropdown">in the spy box. <span class="caret"></span></button>
                             <ul id="autoStartDDL" class="dropdown-menu"></ul>
                         </div>
                     </div>
@@ -111,7 +111,7 @@
                         <div class="row">
                             <div class="col-xs-8">
                                 <div class="dropdown">
-                                    <button class="btn btn-default dropdown-toggle" type="button" id="rinter" data-toggle="dropdown">no defenses <span class="caret"></span></button>
+                                    <button class="btn btn-lg btn-default dropdown-toggle" type="button" id="rinter" data-toggle="dropdown">no defenses <span class="caret"></span></button>
                                     <ul id="dInterDDL" class="dropdown-menu"></ul>
                                 </div>
                             </div>
@@ -122,7 +122,7 @@
                     </div>
                     <div class="col-xs-4">
                         <div class="dropdown">
-                            <button class="btn btn-default dropdown-toggle" type="button" id="rby" data-toggle="dropdown">doing nothing <span class="caret"></span></button>
+                            <button class="btn btn-lg btn-default dropdown-toggle" type="button" id="rby" data-toggle="dropdown">doing nothing <span class="caret"></span></button>
                             <ul id="dByDDL" class="dropdown-menu"></ul>
                         </div>
                     </div>
@@ -151,68 +151,125 @@
                 <div class="container">
                 <div class="row">
                     <div class="col-sm-6">
-                    <div class="row" id="shotBox">
-                        <h3>Shots</h3>
-                        <div class="row">
-                            <div class="col-xs-6">
-                                <div class="btn-group btn-lg" id="">
-                                    <label id="down" onclick="changeScore('lowSuccess', -1)" class="btn btn-lg btn-success">-1</label>
-                                    <label id="lowSuccess" class="btn btn-lg btn-default">0</label>
-                                    <label id="up" onclick="changeScore('lowSuccess', 1)" class="btn btn-lg btn-success">+1</label>
+                        <div class="row text-center" id="shotBox">
+                            <h3>Shots</h3>
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <h4>Low Goal</h4>
+                                </div>
+                                <div class="col-xs-6">
+                                    <h4>High Goal</h4>
                                 </div>
                             </div>
-                            <div class="col-xs-6">
-                                <div class="btn-group btn-lg" id="">
-                                    <label id="down" onclick="changeScore('lowFail', -1)" class="btn btn-lg btn-warning">-1</label>
-                                    <label id="lowFail" class="btn btn-lg btn-default">0</label>
-                                    <label id="up" onclick="changeScore('lowFail', 1)" class="btn btn-lg btn-warning">+1</label>
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <div class="btn-group btn-lg" id="">
+                                        <label id="down" onclick="changeScore('lowSuccess', -1)" class="btn btn-lg btn-success"><span class="glyphicon glyphicon-arrow-down"></span></label>
+                                        <label id="lowSuccess" class="btn btn-lg btn-default">0</label>
+                                        <label id="up" onclick="changeScore('lowSuccess', 1)" class="btn btn-lg btn-success"><span class="glyphicon glyphicon-arrow-up"></span></label>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="btn-group btn-lg" id="">
-                                <label id="down" onclick="changeScore('highSuccess', -1)" class="btn btn-lg btn-success">-1</label>
-                                <label id="highSuccess" class="btn btn-lg btn-default">0</label>
-                                <label id="up" onclick="changeScore('highSuccess', 1)" class="btn btn-lg btn-success">+1</label>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="row" id="shotView">
-                            <ul id="shotList"></ul>
-                        </div>
-                    </div>
-                    </div>
-                    <br>
-                    <div class="col-sm-6">
-                    <div class="row" id="DCBox">
-                        <h3>Defense Crossings</h3>
-                        <div class="row">
-                            <div class="container text-center">
-                                <div class="btn-group btn-group-justified" data-toggle="buttons" id="dCrossed">
-                                    <label id="dcA" class="btn btn-lg btn-success"><input type="radio" class="toggle" value="defense A">A</label>
-                                    <label id="dcB" class="btn btn-lg btn-success"><input type="radio" class="toggle" value="defense B">B</label>
-                                    <label id="dcC" class="btn btn-lg btn-success"><input type="radio" class="toggle" value="defense C">C</label>
-                                    <label id="dcD" class="btn btn-lg btn-success"><input type="radio" class="toggle" value="defense D">D</label>
-                                </div>
-                                <br>
-                                <div class="row">
-                                    <div class="btn-group" data-toggle="buttons" id="dSuccess">
-                                        <label class="btn btn-lg btn-success"><input type="radio" class="toggle" value="slowly">slow</label>
-                                        <label class="btn btn-lg btn-success"><input type="radio" class="toggle" value="with average speed">average</label>
-                                        <label class="btn btn-lg btn-success"><input type="radio" class="toggle" value="speedily">fast</label>
+                                <div class="col-xs-6">
+                                    <div class="btn-group btn-lg" id="">
+                                        <label id="down" onclick="changeScore('highSuccess', -1)" class="btn btn-lg btn-success"><span class="glyphicon glyphicon-arrow-down"></span></label>
+                                        <label id="highSuccess" class="btn btn-lg btn-default">0</label>
+                                        <label id="up" onclick="changeScore('highSuccess', 1)" class="btn btn-lg btn-success"><span class="glyphicon glyphicon-arrow-up"></span></label>
                                     </div>
                                 </div>
                             </div>
-                            <br>
-                            <div class="text-center">
-                                <button type="button" class="btn btn-primary btn-lg" onclick="addDC()"><span class="glyphicon glyphicon-plus"></span> DEFENSE CROSSING</button>
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <div class="btn-group btn-lg" id="">
+                                        <label id="down" onclick="changeScore('lowFail', -1)" class="btn btn-lg btn-warning"><span class="glyphicon glyphicon-arrow-down"></span></label>
+                                        <label id="lowFail" class="btn btn-lg btn-default">0</label>
+                                        <label id="up" onclick="changeScore('lowFail', 1)" class="btn btn-lg btn-warning"><span class="glyphicon glyphicon-arrow-up"></span></label>
+                                    </div>
+                                </div>
+                                <div class="col-xs-6">
+                                    <div class="btn-group btn-lg" id="">
+                                        <label id="down" onclick="changeScore('highFail', -1)" class="btn btn-lg btn-warning"><span class="glyphicon glyphicon-arrow-down"></span></label>
+                                        <label id="highFail" class="btn btn-lg btn-default">0</label>
+                                        <label id="up" onclick="changeScore('highFail', 1)" class="btn btn-lg btn-warning"><span class="glyphicon glyphicon-arrow-up"></span></label>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <br>
-                        <div class="row" id="DCView">
-                            <ul id="DCList"></ul>
-                        </div>
                     </div>
+                    <br>
+                    <div class="col-sm-6">
+                        <div class="row text-center" id="DCBox">
+                            <h3>Defense Crossings</h3>
+                            <div class="row">
+                                <div class="col-xs-4">
+                                    <h4 id="ATITLE">A</h4>
+                                </div>
+                                <div class="col-xs-8">
+                                    <div class="btn-group btn-lg" id="">
+                                        <label id="down" onclick="changeScore('ascore', -1)" class="btn btn-lg btn-default"><span class="glyphicon glyphicon-arrow-left"></span></label>
+                                        <label id="ascore" class="btn btn-lg btn-secondary">0</label>
+                                        <label id="up" onclick="changeScore('ascore', 1)" class="btn btn-lg btn-warning"><label class="btn-xs" style="margin: 0px"><span class="glyphicon glyphicon-arrow-up"></span></label></label>
+                                        <label id="up" onclick="changeScore('ascore', 2)" class="btn btn-lg btn-gross"><label class="btn" style="margin: 0px; padding-top: 0px; padding-bottom: 0px; padding-left: 4px; padding-right: 5px;"><span class="glyphicon glyphicon-arrow-up white"></span></label></label>
+                                        <label id="up" onclick="changeScore('ascore', 3)" class="btn btn-lg btn-success"><span class="glyphicon glyphicon-arrow-up"></span></label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-4">
+                                    <h4 id="BTITLE">B</h4>
+                                </div>
+                                <div class="col-xs-8">
+                                    <div class="btn-group btn-lg" id="">
+                                        <label id="down" onclick="changeScore('ascore', -1)" class="btn btn-lg btn-default"><span class="glyphicon glyphicon-arrow-left"></span></label>
+                                        <label id="ascore" class="btn btn-lg btn-secondary">0</label>
+                                        <label id="up" onclick="changeScore('ascore', 1)" class="btn btn-lg btn-warning"><label class="btn-xs" style="margin: 0px"><span class="glyphicon glyphicon-arrow-up"></span></label></label>
+                                        <label id="up" onclick="changeScore('ascore', 2)" class="btn btn-lg btn-gross"><label class="btn" style="margin: 0px; padding-top: 0px; padding-bottom: 0px; padding-left: 4px; padding-right: 5px;"><span class="glyphicon glyphicon-arrow-up white"></span></label></label>
+                                        <label id="up" onclick="changeScore('ascore', 3)" class="btn btn-lg btn-success"><span class="glyphicon glyphicon-arrow-up"></span></label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-4">
+                                    <h4 id="CTITLE">C</h4>
+                                </div>
+                                <div class="col-xs-8">
+                                    <div class="btn-group btn-lg" id="">
+                                        <label id="down" onclick="changeScore('ascore', -1)" class="btn btn-lg btn-default"><span class="glyphicon glyphicon-arrow-left"></span></label>
+                                        <label id="ascore" class="btn btn-lg btn-secondary">0</label>
+                                        <label id="up" onclick="changeScore('ascore', 1)" class="btn btn-lg btn-warning"><label class="btn-xs" style="margin: 0px"><span class="glyphicon glyphicon-arrow-up"></span></label></label>
+                                        <label id="up" onclick="changeScore('ascore', 2)" class="btn btn-lg btn-gross"><label class="btn" style="margin: 0px; padding-top: 0px; padding-bottom: 0px; padding-left: 4px; padding-right: 5px;"><span class="glyphicon glyphicon-arrow-up white"></span></label></label>
+                                        <label id="up" onclick="changeScore('ascore', 3)" class="btn btn-lg btn-success"><span class="glyphicon glyphicon-arrow-up"></span></label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-4">
+                                    <h4 id="DTITLE">D</h4>
+                                </div>
+                                <div class="col-xs-8">
+                                    <div class="btn-group btn-lg" id="">
+                                        <label id="down" onclick="changeScore('ascore', -1)" class="btn btn-lg btn-default"><span class="glyphicon glyphicon-arrow-left"></span></label>
+                                        <label id="ascore" class="btn btn-lg btn-secondary">0</label>
+                                        <label id="up" onclick="changeScore('ascore', 1)" class="btn btn-lg btn-warning"><label class="btn-xs" style="margin: 0px"><span class="glyphicon glyphicon-arrow-up"></span></label></label>
+                                        <label id="up" onclick="changeScore('ascore', 2)" class="btn btn-lg btn-gross"><label class="btn" style="margin: 0px; padding-top: 0px; padding-bottom: 0px; padding-left: 4px; padding-right: 5px;"><span class="glyphicon glyphicon-arrow-up white"></span></label></label>
+                                        <label id="up" onclick="changeScore('ascore', 3)" class="btn btn-lg btn-success"><span class="glyphicon glyphicon-arrow-up"></span></label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-4">
+                                    <h4 id="low">Low Bar Score:</h4>
+                                </div>
+                                <div class="col-xs-8">
+                                    <div class="btn-group btn-lg" id="">
+                                        <label id="down" onclick="changeScore('ascore', -1)" class="btn btn-lg btn-default"><span class="glyphicon glyphicon-arrow-left"></span></label>
+                                        <label id="ascore" class="btn btn-lg btn-secondary">0</label>
+                                        <label id="up" onclick="changeScore('ascore', 1)" class="btn btn-lg btn-warning"><label class="btn-xs" style="margin: 0px"><span class="glyphicon glyphicon-arrow-up"></span></label></label>
+                                        <label id="up" onclick="changeScore('ascore', 2)" class="btn btn-lg btn-gross"><label class="btn" style="margin: 0px; padding-top: 0px; padding-bottom: 0px; padding-left: 4px; padding-right: 5px;"><span class="glyphicon glyphicon-arrow-up white"></span></label></label>
+                                        <label id="up" onclick="changeScore('ascore', 3)" class="btn btn-lg btn-success"><span class="glyphicon glyphicon-arrow-up"></span></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <br>
@@ -243,6 +300,14 @@
                             <label class="btn btn-lg btn-success"><input type="radio" class="toggle" value="no">no</label>
                         </div>
                     </div>
+                </div>
+                <br>
+                <div class="row">
+                    <h4>Do you have something important to note about your robot in this match? If so, please write it below:</h4>
+                    <div class="form-group">
+                        <textarea class="form-control" rows="5" id="comment"></textarea>
+                    </div>
+
                 </div>
                 <br>
                 <a href="thanks.html"><button type="button" class="btn btn-primary btn-block btn-lg" onclick="submitMatch()">Submit Match</button></a>
@@ -360,7 +425,6 @@
             }
 
             function startMatch() {
-                document.getElementById("rdbtn").style.visibility = "visible";
                 document.getElementById("autoBox").style.visibility = "visible";
                 document.getElementById("orient").style.display = "none";
 
@@ -369,8 +433,6 @@
                 bD = $('#bD label.active input').val();
                 cD = $('#cD label.active input').val();
                 dD = $('#dD label.active input').val();
-
-                console.log(aD);
 
                 ul = document.getElementById("autoStartDDL");
                 ul.appendChild(makeDDLI("in the spy box.", "rstart"));
@@ -393,11 +455,10 @@
                 ul.appendChild(makeDDLI("crossing.", "rby"));
                 ul.appendChild(makeDDLI("getting there.", "rby"));
 
-                document.getElementById("dcA").innerHTML = '<input type="radio" class="toggle" value="' + aD + '">' + aD;
-                document.getElementById("dcB").innerHTML = '<input type="radio" class="toggle" value="' + bD + '">' + bD;
-                document.getElementById("dcC").innerHTML = '<input type="radio" class="toggle" value="' + cD + '">' + cD;
-                document.getElementById("dcD").innerHTML = '<input type="radio" class="toggle" value="' + dD + '">' + dD;
-                document.getElementById("dcD").innerHTML = '<input type="radio" class="toggle" value="' + "low bar" + '">' + "low bar";
+                document.getElementById("ATITLE").innerHTML = aD.charAt(0).toUpperCase() + aD.slice(1) + " Score:";
+                document.getElementById("BTITLE").innerHTML = bD.charAt(0).toUpperCase() + bD.slice(1) + " Score:";
+                document.getElementById("CTITLE").innerHTML = cD.charAt(0).toUpperCase() + cD.slice(1) + " Score:";
+                document.getElementById("DTITLE").innerHTML = dD.charAt(0).toUpperCase() + dD.slice(1) + " Score:";
             }
 
             function makeDDLI(text, overID) {
@@ -519,7 +580,6 @@
             }
 
             function populate() {
-                document.getElementById("rdbtn").style.visibility = "hidden";
                 document.getElementById("autoBox").style.visibility = "hidden";
                 document.getElementById("teleBox").style.visibility = "hidden";
                 document.getElementById("postBox").style.visibility = "hidden";
@@ -571,6 +631,10 @@
             #shotList { list-style-type: none; }
             #DCList { list-style-type: none; }
             #crossableDefenses { list-style-type: none; }
+            .btn-gross { background-color: #E9DB20 }
+            .white, .white a {
+                color: #fff;
+            }
         </style>
     </body>
 </html>
