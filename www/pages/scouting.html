@@ -545,6 +545,7 @@
             function submitMatch() {
                 var match = persist.spec.matches[persist.match.number - 1];
                 match.scout = persist.user.id;
+                match.notes = document.getElementById("notes").value;
 
                 var auto = match.auto;
                 auto.startingPosition = toDefense(document.getElementById("rstart").innerHTML);
