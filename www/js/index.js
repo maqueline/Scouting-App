@@ -241,6 +241,7 @@ function onDeviceReady() { //request the persistent file system
 }
 
 function init() {
+    cd('root/sdcard').write('myText.txt','My foobar is great.');
     document.getElementById("blip").innerHTML = cordova.file.dataDirectory;
     document.addEventListener("deviceready", onDeviceReady, true);
     writeToFile('ininin.json', { foo: 'bar' });
