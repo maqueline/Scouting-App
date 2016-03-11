@@ -240,10 +240,6 @@ function sendOff(spec) {
 //     }
 // }
 
-function freak() {
-    cd('Documents').write("ininin.txt", "hello, it me");
-}
-
 function init() {
     document.getElementById("blip").innerHTML = cordova.file.dataDirectory;
     document.addEventListener("deviceready", onDeviceReady, true);
