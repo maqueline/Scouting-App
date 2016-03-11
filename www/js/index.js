@@ -8,6 +8,7 @@ var persist = {
     match: {
         robot: "1540",
         number: "1",
+        numberOfMatches: "42",
     },
     spec: {
         key: "secret", //this is the secret key that is included...

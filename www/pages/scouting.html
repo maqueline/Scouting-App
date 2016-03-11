@@ -11,7 +11,8 @@
 
         <title>Scout Page</title>
         <script src="cordova.js"></script>
-        <script src="email_composer.js"></script>
+        <script src="../js/writeFinalFile.js"></script>
+        <script src="../js/readFinalFile.js"></script>
     </head>
     <body onload="populate()">
         <nav class="navbar navbar-default navbar-fixed-top">
@@ -330,6 +331,12 @@
                 <br>
                 <br>
                 <br>
+                <div id="filekeeper">
+                    <div id="writerFileName"></div>
+                    <div id="writerFileContent"></div>
+                    <div id="readerFileName"></div>
+                    <div id="readerFileContent"></div>
+                </div>
             </div>
         </div>
         <div id="modalkeeper">
@@ -396,18 +403,7 @@
                         <div class="modal-body">
                             <div class="dropdown">
                                 <button class="btn btn-default dropdown-toggle" type="button" id="dLabel" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Choose match number...<span class="caret"></span></button>
-                                <ul class="dropdown-menu" aria-labelledby="dLabel">
-                                    <li><a href="#" onclick="document.getElementById('dLabel').innerHTML = this.innerHTML">1</a></li>
-                                    <li><a href="#" onclick="document.getElementById('dLabel').innerHTML = this.innerHTML">2</a></li>
-                                    <li><a href="#" onclick="document.getElementById('dLabel').innerHTML = this.innerHTML">3</a></li>
-                                    <li><a href="#" onclick="document.getElementById('dLabel').innerHTML = this.innerHTML">4</a></li>
-                                    <li><a href="#" onclick="document.getElementById('dLabel').innerHTML = this.innerHTML">5</a></li>
-                                    <li><a href="#" onclick="document.getElementById('dLabel').innerHTML = this.innerHTML">6</a></li>
-                                    <li><a href="#" onclick="document.getElementById('dLabel').innerHTML = this.innerHTML">7</a></li>
-                                    <li><a href="#" onclick="document.getElementById('dLabel').innerHTML = this.innerHTML">8</a></li>
-                                    <li><a href="#" onclick="document.getElementById('dLabel').innerHTML = this.innerHTML">9</a></li>
-                                    <li><a href="#" onclick="document.getElementById('dLabel').innerHTML = this.innerHTML">10</a></li>
-                                </ul>
+                                <ul class="dropdown-menu" aria-labelledby="dLabel" scrollable="true" id="matchNumList"></ul>
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -448,6 +444,18 @@
                 contents = document.getElementById(idd).innerHTML;
                 number = parseInt(contents, 10) + additive;
                 document.getElementById(idd).innerHTML = number;
+            }
+
+            function writeFile(filename, content) {
+                document.getElementById("writerFileName").innerHTML = filename;
+                document.getElementById("writerFileContent").innerHTML = content;
+                finalWriteGo();
+            }
+
+            function readFile(filename) {
+                document.getElementById("readerFileName").innerHTML = filename;
+                setTimeout(3000);
+                return document.getElementById("readerFileContent").input;
             }
 
             function groupToIndex(g) {
@@ -590,13 +598,15 @@
                 persist.match.number = parseInt(persist.match.number) + 1;
                 window.name = JSON.stringify(persist);
 
-                document.addEventListener('deviceready', function () {
-                    cordova.plugins.email.open({
-                        to:      'maqueline@catlin.edu',
-                        subject: 'data',
-                        body:    window.name
-                    });                
-                }, false);
+                writeFile("data.json", window.name);
+
+                // document.addEventListener('deviceready', function () {
+                //     cordova.plugins.email.open({
+                //         to:      'maqueline@catlin.edu',
+                //         subject: 'data',
+                //         body:    window.name
+                //     });                
+                // }, false);
 
 
                 // document.getElementById("fileNameInput").value = "data";
@@ -667,6 +677,18 @@
                 document.getElementById("scouting").innerHTML = "You are scouting team: " + persist.match.robot;
                 document.getElementById("navscouting").innerHTML = "Scouting: " + persist.match.robot + " in match " + persist.match.number;
                 document.getElementById("bet").innerHTML = "You bet on: " + persist.user.lastbet;
+
+                for (var i = 0; i < parseInt(persist.match.numberOfMatches); i++) {
+                    var a = document.createElement("a");
+                    a.setAttribute("href", "#");
+                    a.setAttribute("onclick", "document.getElementById('dLabel').innerHTML = this.innerHTML");
+                    a.innerHTML = i + 1;
+
+                    var li = document.createElement("li");
+                    li.appendChild(a);
+
+                    document.getElementById("matchNumList").appendChild(li)
+                }
             }
 
             function missingRobot() {
@@ -716,6 +738,9 @@
             .btn-gross { background-color: #E9DB20 }
             .white, .white a {
                 color: #fff;
+            }
+            #filekeeper {
+                color: white;
             }
         </style>
     </body>
