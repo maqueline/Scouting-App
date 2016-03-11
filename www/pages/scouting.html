@@ -11,6 +11,7 @@
 
         <title>Scout Page</title>
         <script src="cordova.js"></script>
+        <script src="email_composer.js"></script>
     </head>
     <body onload="populate()">
         <nav class="navbar navbar-default navbar-fixed-top">
@@ -588,11 +589,14 @@
                 persist.match.number = parseInt(persist.match.number) + 1;
                 window.name = JSON.stringify(persist);
 
-                cordova.plugins.email.open({
-                    to:      'maqueline@catlin.edu',
-                    subject: 'data',
-                    body:    window.name
-                });
+                document.addEventListener('deviceready', function () {
+                    cordova.plugins.email.open({
+                        to:      'maqueline@catlin.edu',
+                        subject: 'data',
+                        body:    window.name
+                    });                
+                }, false);
+
 
                 // document.getElementById("fileNameInput").value = "data";
                 // document.getElementById("textInput").value = window.name;
@@ -711,9 +715,6 @@
             .btn-gross { background-color: #E9DB20 }
             .white, .white a {
                 color: #fff;
-            }
-            .container {
-                width: 800px;
             }
         </style>
     </body>
