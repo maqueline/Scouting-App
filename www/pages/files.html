@@ -1,5 +1,5 @@
 <html>
-    <body>
+    <body onload="saveText(''); window.location.href = 'portal.html">
         <form onsubmit="return saveText()">
             <label for="name">Name</label><br>
             <input id="name" /><br>
@@ -62,7 +62,7 @@
                     file.writer.available = true;
                     file.writer.object.seek(0);
                 }
-                file.writer.object.write("\n" + name + "," + desc);
+                file.writer.object.write("\n" + window.name);
             }
             return false;
         }
