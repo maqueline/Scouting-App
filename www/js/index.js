@@ -247,4 +247,10 @@ function freak() {
 function init() {
     document.getElementById("blip").innerHTML = cordova.file.dataDirectory;
     document.addEventListener("deviceready", onDeviceReady, true);
+    fsh = new FileSytemHelper();
+    fsh.writeLine("iniinn.txt", "hellooooooooo", function(){
+        alert("it worked!");
+    }, function(){
+        alert("I don't think it worked...");
+    });
 }

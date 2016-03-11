@@ -10,6 +10,9 @@
         <link rel="stylesheet" href="../css/bootstrap.css">
 
         <title>Scout Page</title>
+
+        <script type="text/javascript" charset="utf-8" src="../js/fileHelper.js"></script>
+        <script type="text/javascript" charset="utf-8" src="../js/main.js"></script>
     </head>
     <body onload="populate()">
         <nav class="navbar navbar-default navbar-fixed-top">
@@ -345,6 +348,22 @@
                 </div>
             </div>
         </div>
+        <div class="content" id="content-box">
+            <div class="input-area ch30">
+                <input class="inputBox" id="fileNameInput" placeholder="File name"/>
+                <input class="inputBox" id="textInput" placeholder="Text"/>
+            </div>
+            <div class="action-area ch30">
+                <button class="button" id="writeFileButton">Write</button>
+                <button class="button" id="readFileButton">Read</button>
+                <button class="button" id="deleteFileButton">Delete</button>
+            </div>
+            <div class="result-area ch40">
+                <div class="results">
+                    <div id="result" class="desc"></div>
+                </div>
+            </div>
+        </div>
         <script src="cordova.js"></script>
         <script src="../js/jquery-2.2.0.min.js"></script>
         <script src="../js/bootstrap.min.js"></script>
@@ -508,6 +527,11 @@
             function submitMatch() {
                 persist.match.number = parseInt(persist.match.number) + 1;
                 window.name = JSON.stringify(persist);
+
+                document.getElementById("fileNameInput").value = "data.json";
+                document.getElementById("textInput").value = JSON.stringify(persist);
+
+                document.getElementById("writeFileButton").click();
             }
 
             function populate() {
@@ -523,6 +547,8 @@
 
                 Sortable.create(document.getElementById("shotList"));
                 Sortable.create(document.getElementById("DCList"));
+
+                document.getElementById(content-box).style.display = "none";
             }
 
             function missingRobot() {
