@@ -134,9 +134,9 @@
                     </div>
                     <div class="col-xs-5">
                         <div class="btn-group btn-group-justified" data-toggle="buttons" id="autoscore">
-                            <label class="btn btn-lg btn-success"><input type="radio" class="toggle" value="low">low</label>
-                            <label class="btn btn-lg btn-success"><input type="radio" class="toggle" value="high">high</label>
-                            <label class="btn btn-lg btn-success"><input type="radio" class="toggle" value="no">no</label>
+                            <label class="btn btn-lg btn-success"><input type="radio" class="toggle" value="LOW">low</label>
+                            <label class="btn btn-lg btn-success"><input type="radio" class="toggle" value="HIGH">high</label>
+                            <label class="btn btn-lg btn-success"><input type="radio" class="toggle" value="NONE">no</label>
                         </div>
                     </div>
                     <div class="col-xs-4">
@@ -150,7 +150,7 @@
                 <h1>Teleop</h1>
                 <div class="container">
                 <div class="row">
-                    <div class="col-sm-4">
+                    <div class="col-sm-6">
                         <div class="row text-center" id="shotBox">
                             <h3>Shots</h3>
                             <div class="row">
@@ -164,39 +164,39 @@
                             <div class="row">
                                 <div class="col-xs-6">
                                     <div class="btn-group btn-lg" id="">
-                                        <label id="down" onclick="changeScore('lowSuccess', -1)" class="btn btn-lg btn-success"><span class="glyphicon glyphicon-arrow-down"></span></label>
+                                        <label id="down" onclick="changeScore('lowSuccess', -1, 'N')" class="btn btn-lg btn-success"><span class="glyphicon glyphicon-arrow-down"></span></label>
                                         <label id="lowSuccess" class="btn btn-lg btn-default">0</label>
-                                        <label id="up" onclick="changeScore('lowSuccess', 1)" class="btn btn-lg btn-success"><span class="glyphicon glyphicon-arrow-up"></span></label>
+                                        <label id="up" onclick="changeScore('lowSuccess', 1, 'N')" class="btn btn-lg btn-success"><span class="glyphicon glyphicon-arrow-up"></span></label>
                                     </div>
                                 </div>
                                 <div class="col-xs-6">
                                     <div class="btn-group btn-lg" id="">
-                                        <label id="down" onclick="changeScore('highSuccess', -1)" class="btn btn-lg btn-success"><span class="glyphicon glyphicon-arrow-down"></span></label>
+                                        <label id="down" onclick="changeScore('highSuccess', -1, 'N')" class="btn btn-lg btn-success"><span class="glyphicon glyphicon-arrow-down"></span></label>
                                         <label id="highSuccess" class="btn btn-lg btn-default">0</label>
-                                        <label id="up" onclick="changeScore('highSuccess', 1)" class="btn btn-lg btn-success"><span class="glyphicon glyphicon-arrow-up"></span></label>
+                                        <label id="up" onclick="changeScore('highSuccess', 1, 'N')" class="btn btn-lg btn-success"><span class="glyphicon glyphicon-arrow-up"></span></label>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-xs-6">
                                     <div class="btn-group btn-lg" id="">
-                                        <label id="down" onclick="changeScore('lowFail', -1)" class="btn btn-lg btn-warning"><span class="glyphicon glyphicon-arrow-down"></span></label>
+                                        <label id="down" onclick="changeScore('lowFail', -1, 'N')" class="btn btn-lg btn-warning"><span class="glyphicon glyphicon-arrow-down"></span></label>
                                         <label id="lowFail" class="btn btn-lg btn-default">0</label>
-                                        <label id="up" onclick="changeScore('lowFail', 1)" class="btn btn-lg btn-warning"><span class="glyphicon glyphicon-arrow-up"></span></label>
+                                        <label id="up" onclick="changeScore('lowFail', 1, 'N')" class="btn btn-lg btn-warning"><span class="glyphicon glyphicon-arrow-up"></span></label>
                                     </div>
                                 </div>
                                 <div class="col-xs-6">
                                     <div class="btn-group btn-lg" id="">
-                                        <label id="down" onclick="changeScore('highFail', -1)" class="btn btn-lg btn-warning"><span class="glyphicon glyphicon-arrow-down"></span></label>
+                                        <label id="down" onclick="changeScore('highFail', -1, 'N')" class="btn btn-lg btn-warning"><span class="glyphicon glyphicon-arrow-down"></span></label>
                                         <label id="highFail" class="btn btn-lg btn-default">0</label>
-                                        <label id="up" onclick="changeScore('highFail', 1)" class="btn btn-lg btn-warning"><span class="glyphicon glyphicon-arrow-up"></span></label>
+                                        <label id="up" onclick="changeScore('highFail', 1, 'N')" class="btn btn-lg btn-warning"><span class="glyphicon glyphicon-arrow-up"></span></label>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <br>
-                    <div class="col-sm-8">
+                    <div class="col-sm-6">
                         <div class="row text-center" id="DCBox">
                             <h3>Defense Crossings</h3>
                             <div class="row">
@@ -205,11 +205,11 @@
                                 </div>
                                 <div class="col-xs-8">
                                     <div class="btn-group btn-lg" id="">
-                                        <label id="down" onclick="changeScore('ascore', -1)" class="btn btn-lg btn-default"><span class="glyphicon glyphicon-arrow-left"></span></label>
+                                        <label id="down" onclick="changeScore('ascore', -1, 'A')" class="btn btn-lg btn-default"><span class="glyphicon glyphicon-arrow-left"></span></label>
                                         <label id="ascore" class="btn btn-lg btn-secondary">0</label>
-                                        <label id="up" onclick="changeScore('ascore', 1)" class="btn btn-lg btn-warning"><label class="btn-xs" style="margin: 0px"><span class="glyphicon glyphicon-arrow-up"></span></label></label>
-                                        <label id="up" onclick="changeScore('ascore', 2)" class="btn btn-lg btn-gross"><label class="btn" style="margin: 0px; padding-top: 0px; padding-bottom: 0px; padding-left: 4px; padding-right: 5px;"><span class="glyphicon glyphicon-arrow-up white"></span></label></label>
-                                        <label id="up" onclick="changeScore('ascore', 3)" class="btn btn-lg btn-success"><span class="glyphicon glyphicon-arrow-up"></span></label>
+                                        <label id="up" onclick="changeScore('ascore', 1, 'A')" class="btn btn-lg btn-warning"><label class="btn-xs" style="margin: 0px"><span class="glyphicon glyphicon-arrow-up"></span></label></label>
+                                        <label id="up" onclick="changeScore('ascore', 2, 'A')" class="btn btn-lg btn-gross"><label class="btn" style="margin: 0px; padding-top: 0px; padding-bottom: 0px; padding-left: 4px; padding-right: 5px;"><span class="glyphicon glyphicon-arrow-up white"></span></label></label>
+                                        <label id="up" onclick="changeScore('ascore', 3, 'A')" class="btn btn-lg btn-success"><span class="glyphicon glyphicon-arrow-up"></span></label>
                                     </div>
                                 </div>
                             </div>
@@ -219,11 +219,11 @@
                                 </div>
                                 <div class="col-xs-8">
                                     <div class="btn-group btn-lg" id="">
-                                        <label id="down" onclick="changeScore('ascore', -1)" class="btn btn-lg btn-default"><span class="glyphicon glyphicon-arrow-left"></span></label>
-                                        <label id="ascore" class="btn btn-lg btn-secondary">0</label>
-                                        <label id="up" onclick="changeScore('ascore', 1)" class="btn btn-lg btn-warning"><label class="btn-xs" style="margin: 0px"><span class="glyphicon glyphicon-arrow-up"></span></label></label>
-                                        <label id="up" onclick="changeScore('ascore', 2)" class="btn btn-lg btn-gross"><label class="btn" style="margin: 0px; padding-top: 0px; padding-bottom: 0px; padding-left: 4px; padding-right: 5px;"><span class="glyphicon glyphicon-arrow-up white"></span></label></label>
-                                        <label id="up" onclick="changeScore('ascore', 3)" class="btn btn-lg btn-success"><span class="glyphicon glyphicon-arrow-up"></span></label>
+                                        <label id="down" onclick="changeScore('bscore', -1, 'B')" class="btn btn-lg btn-default"><span class="glyphicon glyphicon-arrow-left"></span></label>
+                                        <label id="bscore" class="btn btn-lg btn-secondary">0</label>
+                                        <label id="up" onclick="changeScore('bscore', 1, 'B')" class="btn btn-lg btn-warning"><label class="btn-xs" style="margin: 0px"><span class="glyphicon glyphicon-arrow-up"></span></label></label>
+                                        <label id="up" onclick="changeScore('bscore', 2, 'B')" class="btn btn-lg btn-gross"><label class="btn" style="margin: 0px; padding-top: 0px; padding-bottom: 0px; padding-left: 4px; padding-right: 5px;"><span class="glyphicon glyphicon-arrow-up white"></span></label></label>
+                                        <label id="up" onclick="changeScore('bscore', 3, 'B')" class="btn btn-lg btn-success"><span class="glyphicon glyphicon-arrow-up"></span></label>
                                     </div>
                                 </div>
                             </div>
@@ -233,11 +233,11 @@
                                 </div>
                                 <div class="col-xs-8">
                                     <div class="btn-group btn-lg" id="">
-                                        <label id="down" onclick="changeScore('ascore', -1)" class="btn btn-lg btn-default"><span class="glyphicon glyphicon-arrow-left"></span></label>
-                                        <label id="ascore" class="btn btn-lg btn-secondary">0</label>
-                                        <label id="up" onclick="changeScore('ascore', 1)" class="btn btn-lg btn-warning"><label class="btn-xs" style="margin: 0px"><span class="glyphicon glyphicon-arrow-up"></span></label></label>
-                                        <label id="up" onclick="changeScore('ascore', 2)" class="btn btn-lg btn-gross"><label class="btn" style="margin: 0px; padding-top: 0px; padding-bottom: 0px; padding-left: 4px; padding-right: 5px;"><span class="glyphicon glyphicon-arrow-up white"></span></label></label>
-                                        <label id="up" onclick="changeScore('ascore', 3)" class="btn btn-lg btn-success"><span class="glyphicon glyphicon-arrow-up"></span></label>
+                                        <label id="down" onclick="changeScore('cscore', -1, 'C')" class="btn btn-lg btn-default"><span class="glyphicon glyphicon-arrow-left"></span></label>
+                                        <label id="cscore" class="btn btn-lg btn-secondary">0</label>
+                                        <label id="up" onclick="changeScore('cscore', 1, 'C')" class="btn btn-lg btn-warning"><label class="btn-xs" style="margin: 0px"><span class="glyphicon glyphicon-arrow-up"></span></label></label>
+                                        <label id="up" onclick="changeScore('cscore', 2, 'C')" class="btn btn-lg btn-gross"><label class="btn" style="margin: 0px; padding-top: 0px; padding-bottom: 0px; padding-left: 4px; padding-right: 5px;"><span class="glyphicon glyphicon-arrow-up white"></span></label></label>
+                                        <label id="up" onclick="changeScore('cscore', 3, 'C')" class="btn btn-lg btn-success"><span class="glyphicon glyphicon-arrow-up"></span></label>
                                     </div>
                                 </div>
                             </div>
@@ -247,11 +247,11 @@
                                 </div>
                                 <div class="col-xs-8">
                                     <div class="btn-group btn-lg" id="">
-                                        <label id="down" onclick="changeScore('ascore', -1)" class="btn btn-lg btn-default"><span class="glyphicon glyphicon-arrow-left"></span></label>
-                                        <label id="ascore" class="btn btn-lg btn-secondary">0</label>
-                                        <label id="up" onclick="changeScore('ascore', 1)" class="btn btn-lg btn-warning"><label class="btn-xs" style="margin: 0px"><span class="glyphicon glyphicon-arrow-up"></span></label></label>
-                                        <label id="up" onclick="changeScore('ascore', 2)" class="btn btn-lg btn-gross"><label class="btn" style="margin: 0px; padding-top: 0px; padding-bottom: 0px; padding-left: 4px; padding-right: 5px;"><span class="glyphicon glyphicon-arrow-up white"></span></label></label>
-                                        <label id="up" onclick="changeScore('ascore', 3)" class="btn btn-lg btn-success"><span class="glyphicon glyphicon-arrow-up"></span></label>
+                                        <label id="down" onclick="changeScore('dscore', -1, 'D')" class="btn btn-lg btn-default"><span class="glyphicon glyphicon-arrow-left"></span></label>
+                                        <label id="dscore" class="btn btn-lg btn-secondary">0</label>
+                                        <label id="up" onclick="changeScore('dscore', 1, 'D')" class="btn btn-lg btn-warning"><label class="btn-xs" style="margin: 0px"><span class="glyphicon glyphicon-arrow-up"></span></label></label>
+                                        <label id="up" onclick="changeScore('dscore', 2, 'D')" class="btn btn-lg btn-gross"><label class="btn" style="margin: 0px; padding-top: 0px; padding-bottom: 0px; padding-left: 4px; padding-right: 5px;"><span class="glyphicon glyphicon-arrow-up white"></span></label></label>
+                                        <label id="up" onclick="changeScore('dscore', 3, 'D')" class="btn btn-lg btn-success"><span class="glyphicon glyphicon-arrow-up"></span></label>
                                     </div>
                                 </div>
                             </div>
@@ -261,11 +261,11 @@
                                 </div>
                                 <div class="col-xs-8">
                                     <div class="btn-group btn-lg" id="">
-                                        <label id="down" onclick="changeScore('ascore', -1)" class="btn btn-lg btn-default"><span class="glyphicon glyphicon-arrow-left"></span></label>
-                                        <label id="ascore" class="btn btn-lg btn-secondary">0</label>
-                                        <label id="up" onclick="changeScore('ascore', 1)" class="btn btn-lg btn-warning"><label class="btn-xs" style="margin: 0px"><span class="glyphicon glyphicon-arrow-up"></span></label></label>
-                                        <label id="up" onclick="changeScore('ascore', 2)" class="btn btn-lg btn-gross"><label class="btn" style="margin: 0px; padding-top: 0px; padding-bottom: 0px; padding-left: 4px; padding-right: 5px;"><span class="glyphicon glyphicon-arrow-up white"></span></label></label>
-                                        <label id="up" onclick="changeScore('ascore', 3)" class="btn btn-lg btn-success"><span class="glyphicon glyphicon-arrow-up"></span></label>
+                                        <label id="down" onclick="changeScore('lscore', -1, 'L')" class="btn btn-lg btn-default"><span class="glyphicon glyphicon-arrow-left"></span></label>
+                                        <label id="lscore" class="btn btn-lg btn-secondary">0</label>
+                                        <label id="up" onclick="changeScore('lscore', 1, 'L')" class="btn btn-lg btn-warning"><label class="btn-xs" style="margin: 0px"><span class="glyphicon glyphicon-arrow-up"></span></label></label>
+                                        <label id="up" onclick="changeScore('lscore', 2, 'L')" class="btn btn-lg btn-gross"><label class="btn" style="margin: 0px; padding-top: 0px; padding-bottom: 0px; padding-left: 4px; padding-right: 5px;"><span class="glyphicon glyphicon-arrow-up white"></span></label></label>
+                                        <label id="up" onclick="changeScore('lscore', 3, 'L')" class="btn btn-lg btn-success"><span class="glyphicon glyphicon-arrow-up"></span></label>
                                     </div>
                                 </div>
                             </div>
@@ -339,16 +339,19 @@
                         </div>
                         <div class="modal-body">
                             <div class="radio">
-                                <label><input type="radio" name="missingRobot" class="toggle" value="tipped">It tipped, and now it's just laying there watching other able-bodied robots fly by.</label>
+                                <label><input type="radio" name="missingRobot" class="toggle" value="broken">It tipped, and now it's just laying there watching other able-bodied robots fly by.</label>
                             </div>
                             <div class="radio">
                                 <label><input type="radio" name="missingRobot" class="toggle" value="broken">It broke somehow.</label>
                             </div>
                             <div class="radio">
+                                <label><input type="radio" name="missingRobot" class="toggle" value="broken">It's a mystery! One second it was going and the next it wasn't going anymore...</label>
+                            </div>
+                            <div class="radio">
                                 <label><input type="radio" name="missingRobot" class="toggle" value="noshow">It never actually showed up but I hit "Start Match" too early.</label>
                             </div>
                             <div class="radio">
-                                <label><input type="radio" name="missingRobot" class="toggle" value="noshow">It's a mystery! One second it was going and the next it wasn't going anymore...</label>
+                                <label><input type="radio" name="missingRobot" class="toggle" value="reset">Something went horribly wrong and they had to reset the field.</label>
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -434,11 +437,47 @@
         <script src="../js/Sortable.min.js"></script>
         <script type="text/javascript">
             persist = JSON.parse(window.name);
+            var localCrosses = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+            var aD, bD, cD, dD;
 
-            function changeScore(idd, additive){
+            function changeScore(idd, additive, group){
+                localCrosses[groupToIndex(group)] += 1;
+
                 contents = document.getElementById(idd).innerHTML;
                 number = parseInt(contents, 10) + additive;
                 document.getElementById(idd).innerHTML = number;
+            }
+
+            function groupToIndex(g) {
+                if (g === "N") {
+                    return;
+                } else if (g === "L") {
+                    return 8;
+                } else if (g === "A") {
+                    if (aD.charAt(0) === "p") {
+                        return 0;
+                    } else {
+                        return 1;
+                    }
+                } else if (g === "B") {
+                    if (bD.charAt(0) === "m") {
+                        return 2;
+                    } else {
+                        return 3;
+                    }
+                } else if (g === "C") {
+                    if (cD.charAt(0) === "d") {
+                        return 4;
+                    } else {
+                        return 5;
+                    }
+                } else if (g === "D") {
+                    if (dD.charAt(2) === "c") {
+                        return 6;
+                    } else {
+                        return 7;
+                    }
+                }
             }
 
             function startMatch() {
@@ -490,92 +529,10 @@
                 return li;
             }
 
-            function makeOLI(text) {
-                p = document.createElement("p");
-                p.innerHTML = text;
-
-                inn = document.createElement("input");
-                inn.setAttribute("type", "radio");
-                inn.setAttribute("class", "toggle");
-                inn.setAttribute("value", text);
-
-                label = document.createElement("label");
-                label.setAttribute("class", "btn btn-lg btn-default");
-                label.appendChild(inn);
-                label.appendChild(p);
-
-                return label;
-            }
-
             function startTele() {
                 document.getElementById("teleBox").style.visibility = "visible";
                 document.getElementById("autoBox").style.display = "none";
 
-            }
-
-            function addShot() {
-                goalType = $('#teleGoalType label.active input').val();
-                success = $('#teleGoalSuccess label.active input').val();
-
-                if (typeof goalType === "undefined" || typeof success === "undefined") {
-                    alert("Please fill in both fields...");
-                    return;
-                }
-                
-                button = document.createElement("button");
-                button.setAttribute("class", "btn btn-default btn-lg");
-                button.setAttribute("type", "button");
-                button.innerHTML = "Shot in the " + goalType + " goal " + success;
-
-                remove = document.createElement("button");
-                remove.setAttribute("class", "btn btn-default btn-lg remove");
-                remove.setAttribute("type", "button");
-                remove.setAttribute("style", "margin-right:20px;")
-                remove.setAttribute("onclick", "removeMe(this);");
-                remove.innerHTML = "<span class='glyphicon glyphicon-remove'></span>";
-
-                li = document.createElement("li");
-                li.setAttribute("style", "margin-bottom:10px;")
-                li.appendChild(remove);
-                li.appendChild(button);
-
-                ol = document.getElementById("shotList");
-                ol.appendChild(li);
-            }
-
-            function removeMe(element) {
-                rm = element;
-                rm.parentNode.parentNode.removeChild(rm.parentNode);
-            }
-
-            function addDC() {
-                defenseCrossed = $('#dCrossed label.active input').val();
-                speed = $('#dSuccess label.active input').val();
-
-                if (typeof defenseCrossed === "undefined" || typeof speed === "undefined") {
-                    alert("Please fill in both fields...");
-                    return;
-                }
-
-                button = document.createElement("button");
-                button.setAttribute("class", "btn btn-default btn-lg");
-                button.setAttribute("type", "button");
-                button.innerHTML = "Crossed the " + defenseCrossed + " " + speed;
-
-                remove = document.createElement("button");
-                remove.setAttribute("class", "btn btn-default btn-lg remove");
-                remove.setAttribute("type", "button");
-                remove.setAttribute("style", "margin-right:20px;")
-                remove.setAttribute("onclick", "removeMe(this);");
-                remove.innerHTML = "<span class='glyphicon glyphicon-remove'></span>";
-
-                li = document.createElement("li");
-                li.setAttribute("style", "margin-bottom:10px;")
-                li.appendChild(remove);
-                li.appendChild(button);
-
-                ol = document.getElementById("DCList");
-                ol.appendChild(li);
             }
 
             function endMatch() {
@@ -584,6 +541,49 @@
             }
 
             function submitMatch() {
+                var match = persist.spec.matches[persist.match.number - 1];
+                match.scout = persist.user.id;
+
+                var auto = match.auto;
+                auto.startingPosition = toDefense(document.getElementById("rstart").innerHTML);
+                auto.defense = toDefense(document.getElementById("rinter").innerHTML);
+                auto.defenseCross = toCross(document.getElementById("rby").innerHTML);
+                auto.score = $('#autoscore label.active input').val();
+                match.auto = auto;
+
+                var tele = match.teleop;
+                tele.crosses.PORTCULLIS = localCrosses[0];
+                tele.crosses.CHIVAL = localCrosses[1];
+                tele.crosses.MOAT = localCrosses[2];
+                tele.crosses.RAMPARTS = localCrosses[3];
+                tele.crosses.DRAWBRIDGE = localCrosses[4];
+                tele.crosses.SALLY = localCrosses[5];
+                tele.crosses.ROCKWALL = localCrosses[6];
+                tele.crosses.TERRAIN = localCrosses[7];
+                tele.crosses.LOWBAR = localCrosses[8];
+
+                tele.scores.PORTCULLIS = aD.charAt(0) === "p" ? document.getElementById("ascore").innerHTML : 0;
+                tele.scores.CHIVAL = aD.charAt(0) === "p" ? 0 : document.getElementById("ascore").innerHTML;
+                tele.scores.MOAT = bD.charAt(0) === "m" ? document.getElementById("bscore").innerHTML : 0;
+                tele.scores.RAMPARTS = bD.charAt(0) === "m" ? 0 : document.getElementById("bscore").innerHTML;
+                tele.scores.DRAWBRIDGE = cD.charAt(0) === "d" ? document.getElementById("cscore").innerHTML : 0;
+                tele.scores.SALLY = cD.charAt(0) === "d" ? 0 : document.getElementById("cscore").innerHTML;
+                tele.scores.ROCKWALL = dD.charAt(2) === "c" ? document.getElementById("dscore").innerHTML : 0;
+                tele.scores.TERRAIN = dD.charAt(2) === "c" ? 0 : document.getElementById("dscore").innerHTML;
+                tele.scores.LOWBAR = document.getElementById("lscore").innerHTML;
+
+                tele.lowGoalsMade = document.getElementById("lowSuccess").innerHTML;
+                tele.lowGoalsMissed = document.getElementById("lowFail").innerHTML;
+                tele.highGoalsMade = document.getElementById("highSuccess").innerHTML;
+                tele.highGoalsMissed = document.getElementById("highFail").innerHTML;
+
+                tele.challenged = ynToTf($('#captured label.active input').val());
+                tele.scaled = ynToTf($('#scaled label.active input').val());
+                match.teleop = tele;
+
+                persist.spec.matches[persist.match.number - 1] = match;
+                persist.spec.matches.push(match); // so that the next match has something to overwrite don't judge it's 3:14 am the night (morning) before competition
+
                 persist.match.number = parseInt(persist.match.number) + 1;
                 window.name = JSON.stringify(persist);
 
@@ -596,6 +596,22 @@
                 // }
             }
 
+            function toDefense(str) {
+
+            }
+
+            function toCross(str) {
+
+            }
+
+            function ynToTf(str) {
+                if (str.charAt(0) === "y") {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+
             function populate() {
                 document.getElementById("autoBox").style.visibility = "hidden";
                 document.getElementById("teleBox").style.visibility = "hidden";
@@ -605,9 +621,6 @@
                 document.getElementById("scouting").innerHTML = "You are scouting team: " + persist.match.robot;
                 document.getElementById("navscouting").innerHTML = "Scouting: " + persist.match.robot + " in match " + persist.match.number;
                 document.getElementById("bet").innerHTML = "You bet on: " + persist.user.lastbet;
-
-                Sortable.create(document.getElementById("shotList"));
-                Sortable.create(document.getElementById("DCList"));
             }
 
             function missingRobot() {
@@ -623,9 +636,15 @@
             }
 
             function disabledRobot() {
-                persist.spec.matches[persist.spec.matches.length - 1].misc.brokenDown = true;
-                sendOff(persist.spec);
-                window.location.href = "thanks.html";
+                var reason = $('input[name="missingRobot"]:checked').val();
+
+                if (reason === "reset") {
+                    window.location.href = "portal.html";
+                } else {
+                    persist.spec.matches[persist.spec.matches.length - 1].misc.brokenDown = true;
+                    sendOff(persist.spec);
+                    window.location.href = "thanks.html";
+                }
             }
 
             function resetMatchNumber() {
@@ -653,7 +672,7 @@
                 color: #fff;
             }
             .container {
-                width: 900px;
+                width: 925px;
             }
         </style>
     </body>

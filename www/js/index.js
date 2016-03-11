@@ -10,70 +10,64 @@ var persist = {
         number: "1",
     },
     spec: {
-        serialId: "get from device plugin",
-        batteryLevel: 100.0,
-        matches: [{
-            matchNumber: "12",
-            role: "R1",
-            teamNumber: "1540",
-            bettingPick: "RED",
-            scout: "27",
-
-            auto: {
-                startingLocation: "zone",
-                defense: "ramparts",
-                score: "none",
-            },
-
-            teleop: {
-                crosses_forward: {
-                    PORTCULLIS: 0,
-                    CHIVAL: 0,
-                    MOAT: 0,
-                    RAMPARTS: 0,
-                    DRAWBRIDGE: 0,
-                    SALLY: 0,
-                    ROCKWALL: 0,
-                    TERRAIN: 0,
-                    LOWBAR: 0,
-                },
-                crosses_reverse: {
-                    PORTCULLIS: 0,
-                    CHIVAL: 0,
-                    MOAT: 0,
-                    RAMPARTS: 0,
-                    DRAWBRIDGE: 0,
-                    SALLY: 0,
-                    ROCKWALL: 0,
-                    TERRAIN: 0,
-                    LOWBAR: 0,
-                },
-                scores: {
-                    PORTCULLIS: 0,
-                    CHIVAL: 0,
-                    MOAT: 0,
-                    RAMPARTS: 0,
-                    DRAWBRIDGE: 0,
-                    SALLY: 0,
-                    ROCKWALL: 0,
-                    TERRAIN: 0,
-                    LOWBAR: 0,
+        key: "secret", //this is the secret key that is included...
+        matches: [ //there can be multiple of these, the app may not have comms to connect every match
+            {
+                matchNumber: 1,
+                role: "R1", //R1, R2, R3, B1, B2, B3 are options
+                teamNumber: "1540",
+                bettingPick: "RED", //RED or BLUE
+                scout: "27", //the scout's id number
+                
+                notes: "", //the optional scout notes box
+                
+                //AUTO:
+                auto: {
+                    startingPosition: "SPYBOX", //should probably be a pulldown for these, SPYBOX, PORTCULLIS, CHIVAL, MOAT, RAMPARTS, DRAWBRIDGE, SALLY, ROCKWALL, TERRAIN, LOWBAR
+                    defense: "PORTCULLIS", //should probably be a pulldown for these, PORTCULLIS, CHIVAL, MOAT, RAMPARTS, DRAWBRIDGE, SALLY, ROCKWALL, TERRAIN, LOWBAR, or NONE
+                    defenseCross: "REACH", //REACH, CROSS, or NONE
+                    score: "NONE", //LOW, HIGH, NONE
                 },
 
-                lowGoals: 0,
-                lowGoalType: "ALL",
-                lowGoalShotCoordinates: [[]],
-                highGoals: 0,
-                highGoalType: "ALL",
-                highGoalShotCoordinates: [[]],
-                challenged: false,
-                scaled: false,
-            },
+                defenses: ["LOWBAR", "PORTCULLIS", "DRAWBRIDGE", "MOAT", "TERRAIN"], //the defenses on the teams side of the field (the ones that they breach)
 
-            misc: {
-                brokenDown: false,
+                //TELE
+                teleop: {
+                    crosses: { //number of times they cross towards lé non-middle
+                        PORTCULLIS: -1,
+                        CHIVAL: 3,
+                        MOAT: 0,
+                        RAMPARTS: 0,
+                        DRAWBRIDGE: 1,
+                        SALLY: 2,
+                        ROCKWALL: 0,
+                        TERRAIN: 0,
+                        LOWBAR: 0
+                    },
+                    scores: { //total scores for each defense
+                        PORTCULLIS: -1,
+                        CHIVAL: 3,
+                        MOAT: 2.5,
+                        RAMPARTS: 0,
+                        DRAWBRIDGE: 1,
+                        SALLY: 2,
+                        ROCKWALL: 0,
+                        TERRAIN: 0,
+                        LOWBAR: 0
+                    },
+                    lowGoalsMade: 3, //number of low goals
+                    highGoalsMade: 1, //number of high goals
+                    lowGoalsMissed: 1,  //
+                    highGoalsMissed: 0, //
+                    challenged: true, //did they get onto the little base platform??
+                    scaled: false,  //did they lift up??
+                },
+
+                misc : {
+                    brokenDown: true, //true or false if the robot fell over, broke down, or was disabled during the match
+                }
             }
-        }]
+        ]
     }
 };
 

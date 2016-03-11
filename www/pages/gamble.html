@@ -33,6 +33,7 @@
                 console.log(bet);
                 persist = JSON.parse(window.name);
                 persist.user.lastbet = bet;
+                persist.spec.matches[parseInt(persist.match.number) - 1].bettingPick = bet.charAt(0) === "R" ? "RED" : "BLUE";
                 window.name = JSON.stringify(persist);
             }
         </script>
