@@ -16,12 +16,27 @@
             <div class="startout"><div class="startin"><a class="btn btn-primary btn-lg btn-xl btn-drop btn-block" href="pages/login.html">START</a></div></div>
         </div>
         <script type="text/javascript">
+        document.addEventListener('deviceready', function () {
             $cordovaFile.writeFile(cordova.file.dataDirectory, "file.txt", "text", true)
                 .then(function (success) {
                     // success
                 }, function (error) {
                     // error
                 });
+            $cordovaFile.createDir(cordova.file.dataDirectory, "new_dir", false)
+      .then(function (success) {
+        // success
+      }, function (error) {
+        // error
+      });
+            $cordovaFile.createFile(cordova.file.dataDirectory, "new_file.txt", true)
+      .then(function (success) {
+        // success
+      }, function (error) {
+        // error
+      });
+
+        }
         </script>
         <script src="cordova.js"></script>
         <script src="js/cd.js"></script>
