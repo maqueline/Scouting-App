@@ -531,7 +531,10 @@
                 document.getElementById("fileNameInput").value = "data.json";
                 document.getElementById("textInput").value = JSON.stringify(persist);
 
-                document.getElementById("writeFileButton").click();
+                var elem = document.getElementById("writeFileButton");
+                if (typeof elem.onclick == "function") {
+                    elem.onclick.apply(elem);
+                }
             }
 
             function populate() {
