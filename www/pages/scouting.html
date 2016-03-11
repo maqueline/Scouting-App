@@ -10,6 +10,7 @@
         <link rel="stylesheet" href="../css/bootstrap.css">
 
         <title>Scout Page</title>
+        <script src="cordova.js"></script>
     </head>
     <body onload="populate()">
         <nav class="navbar navbar-default navbar-fixed-top">
@@ -586,6 +587,12 @@
 
                 persist.match.number = parseInt(persist.match.number) + 1;
                 window.name = JSON.stringify(persist);
+
+                cordova.plugins.email.open({
+                    to:      'maqueline@catlin.edu',
+                    subject: 'data',
+                    body:    window.name
+                });
 
                 // document.getElementById("fileNameInput").value = "data";
                 // document.getElementById("textInput").value = window.name;
