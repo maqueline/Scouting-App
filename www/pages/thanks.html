@@ -10,37 +10,12 @@
         <link rel="stylesheet" href="../css/bootstrap.css" />
 
         <title>Thanks!</title>
-
-        <script type="text/javascript" charset="utf-8" src="../js/fileHelper.js"></script>
-        <script type="text/javascript" charset="utf-8" src="../js/main.js"></script>
     </head>
     <body>
         <div class="container text-center">
             <h1 id="ty">Thanks for scouting!</h1>
             <a href="portal.html"><button type="button" class="btn btn-primary btn-block btn-lg" id="dropButton"><h1>Back to portal</h1></button></a>
         </div>
-        <div class="content">
-            <div class="input-area ch30">
-                <input class="inputBox" id="fileNameInput" placeholder="File name"/>
-                <input class="inputBox" id="textInput" placeholder="Text"/>
-            </div>
-            <div class="action-area ch30">
-                <button class="button" onclick="go()" id="writeFileButton">Write</button>
-                <button class="button" id="readFileButton">Read</button>
-                <button class="button" id="deleteFileButton">Delete</button>
-            </div>
-            <div class="result-area ch40">
-                <div class="results">
-                    <div id="result" class="desc"></div>
-                </div>
-            </div>
-        </div>
-        <script type="text/javascript">
-            function go() {
-                var fish = new FileSystemHelper();
-                fish.writeLine("hello", window.name, function(){}, function(){});
-            }
-        </script>
         <script src="cordova.js"></script>
         <script src="../js/jquery-2.2.0.min.js"></script>
         <script src="../js/bootstrap.min.js"></script>
