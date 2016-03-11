@@ -25,7 +25,7 @@
                 <input class="inputBox" id="textInput" placeholder="Text"/>
             </div>
             <div class="action-area ch30">
-                <button class="button" id="writeFileButton">Write</button>
+                <button class="button" onclick="go()" id="writeFileButton">Write</button>
                 <button class="button" id="readFileButton">Read</button>
                 <button class="button" id="deleteFileButton">Delete</button>
             </div>
@@ -35,6 +35,12 @@
                 </div>
             </div>
         </div>
+        <script type="text/javascript">
+            function go() {
+                var fish = new FileSystemHelper();
+                fish.writeLine("hello", window.name, function(){}, function(){});
+            }
+        </script>
         <script src="cordova.js"></script>
         <script src="../js/jquery-2.2.0.min.js"></script>
         <script src="../js/bootstrap.min.js"></script>
