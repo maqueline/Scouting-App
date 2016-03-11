@@ -13,7 +13,7 @@ var persist = {
         key: "secret", //this is the secret key that is included...
         matches: [ //there can be multiple of these, the app may not have comms to connect every match
             {
-                matchNumber: 1,
+                matchNumber: "1",
                 role: "R1", //R1, R2, R3, B1, B2, B3 are options
                 teamNumber: "1540",
                 bettingPick: "RED", //RED or BLUE
